@@ -60,10 +60,11 @@
 	- README:TOGGLE_CENTER_NAV
 	  Add class 'nav-center-desktop' to <header class="site-header"> to center desktop nav items (CTA remains right-aligned).
 -->
-<header class="site-header">
+<header class="site-header nav-center-desktop">
 	<div class="nav-shell">
-		<a class="nav-brand" href="<?php echo esc_url(home_url('/')); ?>">
-			<?php
+		<div class="nav-brand-slot">
+			<a class="nav-brand" href="<?php echo esc_url(home_url('/')); ?>">
+				<?php
             $logo = function_exists('get_field') ? get_field('site_nav_logo', 'option') : null;
 
 if (is_array($logo) && ! empty($logo['url'])) : ?>
@@ -78,7 +79,8 @@ if (is_array($logo) && ! empty($logo['url'])) : ?>
 			<?php else : ?>
 				<span class="nav-brand-text"><?php echo esc_html(get_bloginfo('name')); ?></span>
 			<?php endif; ?>
-		</a>
+			</a>
+		</div>
 
 
 		<nav class="nav" aria-label="Primary">

@@ -10,12 +10,13 @@
 	   ========================================================================== */
 	.site-header {
 		@apply relative z-50;
-		@apply bg-secondary text-white;
+		@apply bg-transparent text-black;
 	}
 
 	.nav-shell {
 		@apply flex items-center justify-between;
 		@apply gap-4 px-4;
+		@apply bg-transparent;
 
 		/* README:WIDTH_CLAMP
 		   This is where the max header width is controlled (default: clamped). */
@@ -121,8 +122,8 @@
 		/* Mobile behavior: overlay sheet under the header */
 		@apply absolute left-0 right-0 top-full;
 
-		/* Surface */
-		@apply bg-secondary text-white;
+		/* Surface — mobile open panel keeps a solid fill; desktop bar is transparent */
+		@apply bg-soft-1 text-black;
 		/* @apply border-t border-white/10; */ /* optional top divider */
 		@apply shadow-lg;
 
@@ -140,7 +141,7 @@
 			@apply static;
 
 			/* Reset mobile-only surface/scroll concerns */
-			@apply p-0;
+			@apply bg-transparent p-0;
 			@apply border-0 shadow-none;
 			@apply max-h-none overflow-visible;
 
@@ -165,8 +166,9 @@
 		@apply w-full;
 	}
 
-	/* Mobile-only: apply padding to everything except CTA so CTA can be full-bleed */
-	.nav-item:not(.is-cta) {
+	/* Mobile-only: apply padding to everything except CTA so CTA can be full-bleed.
+	   Exclude .nav-cta (normalized class), not just .is-cta (admin hook). */
+	.nav-item:not(.nav-cta) {
 		@apply px-1;
 	}
 
@@ -240,6 +242,15 @@
 		/* Disclosure labels live inside .nav-label */
 		.nav-disclosure .nav-label {
 			@apply whitespace-nowrap overflow-hidden text-ellipsis;
+		}
+
+		/* Desktop hover: subtle black tint (white/10 was invisible on transparent bar).
+		   CTA excluded; mobile keeps hover:bg-white/10 above. */
+		.nav-link:not(.nav-cta-link),
+		.nav-disclosure {
+			@apply hover:bg-black/10;
+			/* ~25% bump vs text-base so main links match surrounding typography */
+			@apply text-xl;
 		}
 	}
 
@@ -373,6 +384,10 @@
 
 	/* Mobile-only: full-width, centered "bar" CTA inside the open panel */
 	@media (max-width: 1023px) {
+		.nav-item.nav-cta {
+			@apply px-0;
+		}
+
 		.nav-cta-link {
 			@apply w-full;
 			@apply rounded-none;
@@ -421,10 +436,24 @@
 		.site-header {
 			position: relative; /* explicit for clarity */
 			z-index: 50;
+
+			/* Match panel WAAPI timing (ANIM_DURATION_MS / ANIM_EASING in navbar.ts) */
+			transition: background-color 220ms cubic-bezier(0.2, 0, 0, 1);
+		}
+
+		/* Fill the logo/hamburger bar so the dim backdrop doesn't show through */
+		body.nav-open .site-header {
+			@apply bg-soft-1;
 		}
 
 		.nav-panel {
 			z-index: 60;
+		}
+	}
+
+	@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+		.site-header {
+			transition: none;
 		}
 	}
 
@@ -476,26 +505,37 @@
 
 	/* ==========================================================================
 	   README:TOGGLE_CENTER_NAV
-	   Center desktop navigation
+	   Center desktop navigation from the header's outer edges.
 	   Enable: add .nav-center-desktop to .site-header
-	   Goal: brand left, menu centered, CTA right
+	   Goal: brand left, menu optically centered, CTA right
 	   Requires: CTA item is last and has .nav-cta
+
+	   Uses equal flex side rails (brand slot + CTA) so the middle links
+	   center relative to the full header, not the gap between unequal
+	   logo/CTA widths. Brand link stays content-sized (dead space not
+	   clickable). Mobile layout is unchanged.
 	   ========================================================================== */
 	@media (min-width: 1024px) {
 		.site-header.nav-center-desktop .nav-shell {
-			@apply justify-start;
+			@apply justify-start gap-0;
 		}
 
-		.site-header.nav-center-desktop .nav {
-			@apply flex-1;
+		/* Left rail: grows equally with the CTA rail; logo link stays content-sized */
+		.site-header.nav-center-desktop .nav-brand-slot {
+			flex: 1 1 0;
+			min-width: 0;
+			@apply flex justify-start bg-transparent;
+		}
+
+		/* Flatten wrappers so brand-slot, middle items, and CTA share one flex row.
+		   !important on .nav-panel beats the base desktop `display: block !important`. */
+		.site-header.nav-center-desktop .nav,
+		.site-header.nav-center-desktop .nav-list {
+			display: contents;
 		}
 
 		.site-header.nav-center-desktop .nav-panel {
-			@apply w-full;
-		}
-
-		.site-header.nav-center-desktop .nav-list {
-			@apply w-full;
+			display: contents !important;
 		}
 
 		/* Mobile-first rules make each li/link/button full-width.
@@ -509,14 +549,17 @@
 			width: auto;
 		}
 
-		/* Center the non-CTA group by splitting free space */
-		.site-header.nav-center-desktop .nav-list > .nav-item:not(.nav-cta):first-child {
-			margin-left: auto;
+		/* Restore horizontal spacing between middle links (lost with display: contents) */
+		.site-header.nav-center-desktop .nav-list > .nav-item:not(.nav-cta) ~ .nav-item:not(.nav-cta) {
+			@apply ml-2;
 		}
 
-		/* Keep CTA pinned to the far right */
+		/* Right rail: equal flex to brand-slot; button stays content-sized and end-aligned */
 		.site-header.nav-center-desktop .nav-item.nav-cta {
-			margin-left: auto;
+			flex: 1 1 0;
+			min-width: 0;
+			@apply flex justify-end bg-transparent;
+			margin-left: 0;
 		}
 	}
 }
