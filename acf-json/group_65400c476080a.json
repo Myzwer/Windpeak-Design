@@ -464,7 +464,7 @@
 							"name": "title",
 							"aria-label": "",
 							"type": "text",
-							"instructions": "",
+							"instructions": "Rendered as an H1 with the XL display font. The first space becomes a line break (e.g. “Windpeak Design”).",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
@@ -485,7 +485,7 @@
 							"name": "subtitle",
 							"aria-label": "",
 							"type": "text",
-							"instructions": "",
+							"instructions": "Shown under the title in uppercase sans (tagline).",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
@@ -579,5 +579,5 @@
 	"display_title": "",
 	"allow_ai_access": false,
 	"ai_description": "",
-	"modified": 1788145400
+	"modified": 1788175200
 }

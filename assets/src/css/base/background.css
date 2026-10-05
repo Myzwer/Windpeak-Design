@@ -40,6 +40,66 @@
 }
 
 /* ---------------------------------------------------------
+   Video hero (homepage flex field)
+   ---------------------------------------------------------
+   Structure:
+     .video-header
+       .video-header-shell
+         .video-header-frame.viewport-header
+           .video-hero-media
+             video.header-video
+             .video-hero-overlay
+           .video-hero-content
+
+   Notes:
+   - Transparent navbar overlays the soft topo band above the frame.
+   - Shell padding-top = --site-header-height (+ gap) so the video
+     never collides with the nav.
+   - Frame is the rounded media card from the mockup.
+*/
+
+:root {
+	/* Matches .nav-brand-logo (h-18). Keep in sync with navbar.css. */
+	--site-header-height: 4.5rem;
+}
+
+body:has(.video-header) .site-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+}
+
+/* Darker ACF topo asset — pull back ~30% from the global .bg-texture opacity (0.25). */
+.video-header.bg-texture:after {
+	opacity: 0.175;
+}
+
+.video-header-shell {
+	/* Nav clearance + breathing room around the frame */
+	padding-top: calc(var(--site-header-height) + 0.1rem);
+	padding-inline: 1.25rem;
+	padding-bottom: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+	.video-header-shell {
+		padding-inline: 1.75rem;
+		padding-bottom: 1.75rem;
+	}
+}
+
+.video-hero-tagline {
+	font-family: var(--font-body);
+	font-size: clamp(0.8125rem, 1.4vw, 1.0625rem);
+	font-weight: 500;
+	line-height: 1.4;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------
    Video hero media + content wrapper
    ---------------------------------------------------------
    Structure:
@@ -67,6 +127,13 @@
 	min-height: 60vh;
 
 	background-color: var(--color-black);
+}
+
+/* Must follow .viewport-header so left-align wins over the default center. */
+.viewport-header.video-header-frame {
+	border-radius: 1.25rem; /* ~20px — mockup rounded video card */
+	place-items: center start;
+	text-align: left;
 }
 
 /* Absolute media layer */
@@ -146,7 +213,14 @@
 	z-index: 2;
 
 	width: 100%;
-	padding-inline: 1.25rem;
+	/* Mobile: let .wrap-wide / grid supply the inset so type doesn’t get squeezed. */
+	padding-inline: 0;
+}
+
+@media (min-width: 768px) {
+	.video-hero-content {
+		padding-inline: 1.25rem;
+	}
 }
 
 
