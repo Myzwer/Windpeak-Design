@@ -8,7 +8,7 @@
 			"name": "header_select",
 			"aria-label": "",
 			"type": "flexible_content",
-			"instructions": "Add one header. Options:<br>\r\nSimple — colored background, title, and optional buttons.<br>\r\nSide Image — photo on one side, title and buttons on the other.<br>\r\nFull Image — full-width photo background with a tint, title, and buttons.<br>\r\nVideo — looping video background with a poster image, title, and buttons.",
+			"instructions": "Add one header. Options:<br>\r\nPhoto \u2014 rounded photo frame with eyebrow, title, and button (supports seasonal images).<br>\r\nSimple \u2014 colored background, title, and optional buttons.<br>\r\nSide Image \u2014 photo on one side, title and buttons on the other.<br>\r\nFull Image \u2014 full-width photo background with a tint, title, and buttons.<br>\r\nVideo \u2014 looping video background with a poster image, title, and buttons.",
 			"required": 0,
 			"conditional_logic": 0,
 			"wrapper": {
@@ -17,6 +17,273 @@
 				"id": ""
 			},
 			"layouts": {
+				"layout_windpeak_photo_header": {
+					"key": "layout_windpeak_photo_header",
+					"name": "photo_header",
+					"label": "Photo Header",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_windpeak_photo_eyebrow",
+							"label": "Eyebrow",
+							"name": "eyebrow",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "Small label above the title (e.g. About).",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"maxlength": 45,
+							"allow_in_bindings": 0,
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_windpeak_photo_main_title",
+							"label": "Main Title",
+							"name": "main_title",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"allow_in_bindings": 0,
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_windpeak_photo_button",
+							"label": "Button",
+							"name": "button",
+							"aria-label": "",
+							"type": "link",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"allow_in_bindings": 0
+						},
+						{
+							"key": "field_windpeak_photo_image_darken",
+							"label": "Image Darken",
+							"name": "image_darken",
+							"aria-label": "",
+							"type": "select",
+							"instructions": "Darkens the photo so white text stays readable.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"choices": {
+								"0": "None",
+								"30": "Slightly dark",
+								"45": "Medium dark",
+								"60": "Darker",
+								"70": "Most dark"
+							},
+							"default_value": 0,
+							"return_format": "value",
+							"multiple": 0,
+							"allow_null": 0,
+							"allow_in_bindings": 0,
+							"ui": 0,
+							"ajax": 0,
+							"placeholder": "",
+							"create_options": 0,
+							"save_options": 0
+						},
+						{
+							"key": "field_windpeak_photo_tab_images",
+							"label": "Images",
+							"name": "",
+							"aria-label": "",
+							"type": "tab",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"placement": "top",
+							"endpoint": 0,
+							"selected": 0
+						},
+						{
+							"key": "field_windpeak_photo_images_note",
+							"label": "Seasonal photos",
+							"name": "",
+							"aria-label": "",
+							"type": "message",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"message": "Windpeak is the default. Spring / Summer / Fall / Winter swap in when that season is selected. Leave a season empty to keep showing Windpeak.",
+							"new_lines": "wpautop",
+							"esc_html": 0
+						},
+						{
+							"key": "field_windpeak_photo_image_windpeak",
+							"label": "Windpeak",
+							"name": "image_windpeak",
+							"aria-label": "",
+							"type": "image",
+							"instructions": "Default / brand photo.",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "20",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "1.5",
+							"mime_types": "",
+							"allow_in_bindings": 0,
+							"preview_size": "medium"
+						},
+						{
+							"key": "field_windpeak_photo_image_spring",
+							"label": "Spring",
+							"name": "image_spring",
+							"aria-label": "",
+							"type": "image",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "20",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "1.5",
+							"mime_types": "",
+							"allow_in_bindings": 0,
+							"preview_size": "medium"
+						},
+						{
+							"key": "field_windpeak_photo_image_summer",
+							"label": "Summer",
+							"name": "image_summer",
+							"aria-label": "",
+							"type": "image",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "20",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "1.5",
+							"mime_types": "",
+							"allow_in_bindings": 0,
+							"preview_size": "medium"
+						},
+						{
+							"key": "field_windpeak_photo_image_autumn",
+							"label": "Fall",
+							"name": "image_autumn",
+							"aria-label": "",
+							"type": "image",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "20",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "1.5",
+							"mime_types": "",
+							"allow_in_bindings": 0,
+							"preview_size": "medium"
+						},
+						{
+							"key": "field_windpeak_photo_image_winter",
+							"label": "Winter",
+							"name": "image_winter",
+							"aria-label": "",
+							"type": "image",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "20",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "1.5",
+							"mime_types": "",
+							"allow_in_bindings": 0,
+							"preview_size": "medium"
+						}
+					],
+					"min": "",
+					"max": ""
+				},
 				"layout_65400c9fe3754": {
 					"key": "layout_65400c9fe3754",
 					"name": "simple_header",
@@ -464,7 +731,7 @@
 							"name": "title",
 							"aria-label": "",
 							"type": "text",
-							"instructions": "Rendered as an H1 with the XL display font. The first space becomes a line break (e.g. “Windpeak Design”).",
+							"instructions": "Rendered as an H1 with the XL display font. The first space becomes a line break (e.g. \u201cWindpeak Design\u201d).",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
@@ -579,5 +846,5 @@
 	"display_title": "",
 	"allow_ai_access": false,
 	"ai_description": "",
-	"modified": 1788175200
+	"modified": 1791258000
 }
