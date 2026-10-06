@@ -7,6 +7,7 @@
  */
 
 /* Base / global helpers */
+@import "./base/palettes.css";
 @import "./base/background.css";
 @import "./base/video.css";
 
@@ -15,6 +16,7 @@
 @import "./base/footer-complex.css";
 @import "./base/footer-credit.css";
 @import "./base/navbar.css";
+@import "./base/palette-fab.css";
 
 /* 404 */
 @import "./base/404.css";

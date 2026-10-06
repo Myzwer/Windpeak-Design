@@ -15,6 +15,9 @@
 	   Notes:
 	   - --color-* => text-* / bg-* / border-* / utilities
        - --background-image-* => bg-* / utilities
+	   - These values are Base Windpeak (the live palette).
+	   - Seasonal palettes override the same variables.
+	     See base/palettes.css. Set data-palette on <html>.
 	*/
 	/* Neutrals */
 	--color-black: #0F172A;

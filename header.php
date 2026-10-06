@@ -25,6 +25,27 @@
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<script>
+		(function () {
+			var palette;
+
+			try {
+				palette = sessionStorage.getItem("prelaunch-palette");
+			} catch (error) {
+				return;
+			}
+
+			if (!palette || palette === "windpeak") {
+				return;
+			}
+
+			palette = palette.replace(/[^a-z]/g, "");
+
+			if (palette === "spring" || palette === "summer" || palette === "autumn" || palette === "winter") {
+				document.documentElement.setAttribute("data-palette", palette);
+			}
+		})();
+	</script>
 
 	<?php
     /**

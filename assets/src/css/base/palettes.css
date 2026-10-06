@@ -1,0 +1,66 @@
+/**
+ * Seasonal palettes
+ * =================================
+ * Purpose:
+ * - Swap the live color roles without changing which components use them.
+ * - Base Windpeak stays in tailwind.css `@theme`. No attribute, or
+ *   data-palette="base", keeps those values.
+ * - Imported from frontend.css. Do not @import this file from tailwind.css;
+ *   Tailwind cannot resolve extra CSS imports in that entry.
+ *
+ * Toggle:
+ * - document.documentElement.dataset.palette = "spring";
+ * - Values: spring | summer | autumn | winter
+ * - No attribute (or choosing Windpeak) keeps Base Windpeak from @theme.
+ *
+ * Role map (YAML name → token already used in the theme):
+ * - sky   → --color-primary
+ * - turf  → --color-secondary
+ * - frost → --color-soft-1
+ * - dew   → --color-soft-2
+ *
+ * Neutrals (--color-black / --color-white) stay on Base Windpeak.
+ * Gradients already read these variables, so they follow the palette.
+ */
+
+@layer theme {
+	:root[data-palette="spring"] {
+		--color-primary: #73CFAE;
+		--color-secondary: #3F8058;
+		--color-soft-1: #E8F5E9;
+		--color-soft-2: #F3E8F4;
+		--color-primary-gradient-to: #CFF3E4;
+		--color-secondary-gradient-to: #D4F5DE;
+		--color-impact-gradient-to: #2E6242;
+	}
+
+	:root[data-palette="summer"] {
+		--color-primary: #4FB7C5;
+		--color-secondary: #2F6F4E;
+		--color-soft-1: #E3F5F4;
+		--color-soft-2: #FFF1D6;
+		--color-primary-gradient-to: #C7EDF1;
+		--color-secondary-gradient-to: #C9EEDD;
+		--color-impact-gradient-to: #23543A;
+	}
+
+	:root[data-palette="autumn"] {
+		--color-primary: #D99A5E;
+		--color-secondary: #632D29;
+		--color-soft-1: #F7E8D5;
+		--color-soft-2: #F4E4DF;
+		--color-primary-gradient-to: #F5DEC7;
+		--color-secondary-gradient-to: #F1D7D2;
+		--color-impact-gradient-to: #47201D;
+	}
+
+	:root[data-palette="winter"] {
+		--color-primary: #78B7D4;
+		--color-secondary: #315B70;
+		--color-soft-1: #E3F1F7;
+		--color-soft-2: #E9EEF7;
+		--color-primary-gradient-to: #D4EAF4;
+		--color-secondary-gradient-to: #D2E3EC;
+		--color-impact-gradient-to: #243F4D;
+	}
+}

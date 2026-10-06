@@ -94,6 +94,8 @@
 	</div>
 </div>
 
+<?php get_template_part( 'template-parts/palette-fab' ); ?>
+
 <?php wp_footer(); ?>
 </body>
 </html>

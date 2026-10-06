@@ -1,0 +1,175 @@
+@reference "../tailwind.css";
+
+/**
+ * Palette FAB
+ * Fixed bottom-right control. Markup: template-parts/palette-fab.php
+ *
+ * Season fills are each palette's sky color.
+ */
+
+@layer components {
+	.palette-fab-stack {
+		position: fixed;
+		z-index: 30;
+		right: max(1.25rem, env(safe-area-inset-right));
+		bottom: max(1.25rem, env(safe-area-inset-bottom));
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.52rem;
+	}
+
+	@media (min-width: 768px) {
+		.palette-fab-stack {
+			right: max(1.75rem, env(safe-area-inset-right));
+			bottom: max(1.75rem, env(safe-area-inset-bottom));
+		}
+	}
+
+	.palette-fab-seasons {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.52rem;
+		transform-origin: center bottom;
+		transition:
+			transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+			opacity 0.28s ease;
+	}
+
+	.palette-fab-seasons[hidden] {
+		display: none;
+	}
+
+	.palette-fab,
+	.palette-fab-season {
+		display: grid;
+		place-items: center;
+		flex-shrink: 0;
+		border: 0;
+		border-radius: 9999px;
+		cursor: pointer;
+		line-height: 1;
+		box-shadow: 0 4px 10px color-mix(in oklab, var(--color-black) 16%, transparent);
+	}
+
+	.palette-fab-seasons.is-prep {
+		transition: none;
+	}
+
+	.palette-fab-stack:not(.is-open) .palette-fab-seasons {
+		transform: translateY(70%);
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.palette-fab:hover,
+	.palette-fab-season:hover {
+		opacity: 0.8;
+	}
+
+	.palette-fab:focus-visible,
+	.palette-fab-season:focus-visible {
+		outline: 2px solid var(--color-black);
+		outline-offset: 3px;
+	}
+
+	.palette-fab {
+		width: 3.3421875rem;
+		height: 3.3421875rem;
+		padding: 0;
+		color: var(--color-black);
+		background-color: var(--color-primary);
+		font-size: 1.4375rem;
+		transition: opacity 0.2s ease;
+	}
+
+	/* Font Awesome sets display outside any layer, so this has to win explicitly. */
+	.palette-fab > [data-palette-icon] {
+		display: none !important;
+	}
+
+	.palette-fab-mark {
+		display: block;
+		width: 64%;
+		height: 64%;
+		object-fit: contain;
+		pointer-events: none;
+	}
+
+	.palette-fab-season {
+		width: calc(3.3421875rem * 0.75);
+		height: calc(3.3421875rem * 0.75);
+		color: var(--color-black);
+		font-size: 1.0925rem;
+		transition: opacity 0.2s ease;
+	}
+
+	.palette-fab-season--mark {
+		background-color: #63C1E9;
+	}
+
+	.palette-fab-season[data-palette="winter"],
+	.palette-fab-stack[data-active="winter"] .palette-fab {
+		background-color: #78B7D4;
+	}
+
+	.palette-fab-season[data-palette="spring"],
+	.palette-fab-stack[data-active="spring"] .palette-fab {
+		background-color: #73CFAE;
+	}
+
+	.palette-fab-season[data-palette="summer"],
+	.palette-fab-stack[data-active="summer"] .palette-fab {
+		background-color: #4FB7C5;
+	}
+
+	.palette-fab-season[data-palette="autumn"],
+	.palette-fab-stack[data-active="autumn"] .palette-fab {
+		background-color: #D99A5E;
+	}
+
+	.palette-fab-stack[data-menu="windpeak"] .palette-fab-seasons [data-palette="windpeak"],
+	.palette-fab-stack[data-menu="winter"] .palette-fab-seasons [data-palette="winter"],
+	.palette-fab-stack[data-menu="spring"] .palette-fab-seasons [data-palette="spring"],
+	.palette-fab-stack[data-menu="summer"] .palette-fab-seasons [data-palette="summer"],
+	.palette-fab-stack[data-menu="autumn"] .palette-fab-seasons [data-palette="autumn"] {
+		display: none;
+	}
+
+	.palette-fab.is-pop {
+		animation: palette-fab-pop 0.38s cubic-bezier(0.2, 0.85, 0.3, 1);
+	}
+
+	@keyframes palette-fab-pop {
+		0% {
+			transform: scale(0.88);
+		}
+
+		42% {
+			transform: scale(1.14);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.palette-fab-seasons {
+			transition: none;
+		}
+
+		.palette-fab.is-pop {
+			animation: none;
+		}
+	}
+
+	.palette-fab-stack[data-active="windpeak"] .palette-fab > [data-palette-icon="windpeak"],
+	.palette-fab-stack[data-active="winter"] .palette-fab > [data-palette-icon="winter"],
+	.palette-fab-stack[data-active="spring"] .palette-fab > [data-palette-icon="spring"],
+	.palette-fab-stack[data-active="summer"] .palette-fab > [data-palette-icon="summer"],
+	.palette-fab-stack[data-active="autumn"] .palette-fab > [data-palette-icon="autumn"] {
+		display: block !important;
+	}
+}
