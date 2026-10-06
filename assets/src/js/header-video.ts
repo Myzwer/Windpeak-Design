@@ -5,14 +5,15 @@
  * is the poster only. Playback starts after idle unless the user already paused
  * or Save-Data is on.
  *
- * The button is rendered in the video header template and stays fixed in the
- * bottom-right so it remains available while the video is moving (WCAG 2.2.2).
+ * The button lives in the bottom-right of the video frame (WCAG 2.2.2).
  * Reduced-motion users never see the video or the control (CSS).
  */
 
 const STORAGE_KEY = "prelaunch-header-video-paused";
 const PAUSE_LABEL = "Pause background video";
 const PLAY_LABEL = "Play background video";
+const PAUSE_ICON = "fa-pause";
+const PLAY_ICON = "fa-play";
 
 /**
  * Attach the mp4 when we actually intend to play.
@@ -29,6 +30,24 @@ function attachHeaderVideoSource(video: HTMLVideoElement): void {
 
 	source.setAttribute("src", pending);
 	video.load();
+}
+
+/**
+ * Update the toggle's accessible name and Font Awesome icon.
+ *
+ * @param {HTMLButtonElement} toggle Pause/play control button.
+ * @param {boolean} paused Whether the video is currently paused.
+ */
+function syncToggleUi(toggle: HTMLButtonElement, paused: boolean): void {
+	toggle.setAttribute("aria-label", paused ? PLAY_LABEL : PAUSE_LABEL);
+
+	const icon = toggle.querySelector<HTMLElement>("[data-header-video-icon]");
+	if (!icon) {
+		return;
+	}
+
+	icon.classList.remove(PAUSE_ICON, PLAY_ICON);
+	icon.classList.add(paused ? PLAY_ICON : PAUSE_ICON);
 }
 
 /**
@@ -62,7 +81,7 @@ export function initHeaderVideoPause(): void {
 			}
 		});
 
-		toggle.textContent = paused ? PLAY_LABEL : PAUSE_LABEL;
+		syncToggleUi(toggle, paused);
 
 		try {
 			window.localStorage.setItem(STORAGE_KEY, paused ? "1" : "0");
@@ -78,7 +97,7 @@ export function initHeaderVideoPause(): void {
 		stored = false;
 	}
 
-	toggle.textContent = stored || saveData ? PLAY_LABEL : PAUSE_LABEL;
+	syncToggleUi(toggle, stored || saveData);
 
 	const startWhenIdle = (): void => {
 		if (stored || saveData) {

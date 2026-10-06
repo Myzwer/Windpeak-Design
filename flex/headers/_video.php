@@ -114,14 +114,14 @@
 
 			<div class="video-hero-content">
 				<div class="wrap-wide grid-12">
-					<div class="grid col-span-12 md:col-span-9 lg:col-span-7 justify-items-start text-left">
+					<div class="grid col-span-12 justify-items-start text-left md:col-span-9 lg:col-span-7">
 
 						<?php if ( $title ) : ?>
 							<?php
 							// Stack the brand name like the mockup (first word / rest).
 							$title_parts = preg_split( '/\s+/', trim( (string) $title ), 2 );
 							?>
-							<h1 class="heading-xl text-white text-balance">
+							<h1 class="text-white heading-xl text-balance">
 								<?php if ( is_array( $title_parts ) && 2 === count( $title_parts ) ) : ?>
 									<?php echo esc_html( $title_parts[0] ); ?>
 									<br><?php echo esc_html( $title_parts[1] ); ?>
@@ -132,7 +132,7 @@
 						<?php endif; ?>
 
 						<?php if ( $subtitle ) : ?>
-							<p class="video-hero-tagline mt-5 text-white">
+							<p class="mt-5 text-white video-hero-tagline">
 								<?php echo esc_html( $subtitle ); ?>
 							</p>
 						<?php endif; ?>
@@ -187,16 +187,17 @@
 				</div>
 			</div>
 
+			<?php if ( $video_url ) : ?>
+				<button
+					type="button"
+					class="video-pause-btn"
+					data-header-video-toggle
+					aria-label="<?php esc_attr_e( 'Pause background video', 'prelaunch-wp' ); ?>"
+				>
+					<i class="fa-solid fa-pause" aria-hidden="true" data-header-video-icon></i>
+				</button>
+			<?php endif; ?>
+
 		</div>
 	</div>
-
-	<?php if ( $video_url ) : ?>
-		<button
-			type="button"
-			class="video-pause-btn"
-			data-header-video-toggle
-		>
-			Pause background video
-		</button>
-	<?php endif; ?>
 </section>
