@@ -8317,48 +8317,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prelaunch-wp@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "prelaunch-wp@workspace:."
-  dependencies:
-    "@babel/core": ^7.14.6
-    "@babel/eslint-parser": ^7.14.7
-    "@babel/preset-env": ^7.14.7
-    "@babel/preset-typescript": ^7.28.5
-    "@tailwindcss/forms": ^0.5.10
-    "@tailwindcss/postcss": ^4
-    "@tailwindcss/typography": ^0.5.10
-    "@types/jquery": ^3.5.33
-    "@wordpress/eslint-plugin": ^9.0.6
-    babel-loader: ^8.2.2
-    browser-sync: ^2.27.4
-    browser-sync-webpack-plugin: ^2.3.0
-    copy-webpack-plugin: ^13.0.1
-    css-loader: ^6
-    css-minimizer-webpack-plugin: ^7.0.4
-    dotenv: ^17.2.3
-    eslint: ^8
-    eslint-config-google: ^0.14.0
-    eslint-config-prettier: ^8.3.0
-    jquery: ^3.7.1
-    lint-staged: ^15
-    mini-css-extract-plugin: ^2.1.0
-    postcss: ^8.4.31
-    postcss-loader: ^6.1.1
-    postcss-preset-env: ^6.7.0
-    prettier: ^3
-    rimraf: ^6.1.2
-    rustywind: ^0.24.3
-    simple-git-hooks: ^2
-    stylelint: ^16
-    stylelint-webpack-plugin: ^5
-    tailwindcss: ^4
-    typescript: ^5.9.3
-    webpack: ^5
-    webpack-cli: ^5
-  languageName: unknown
-  linkType: soft
-
 "prelude-ls@npm:^1.2.1":
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
@@ -10140,6 +10098,48 @@ __metadata:
   checksum: 1f4fe4c03dfc492777c60f795bbba597ac78794f1b650d68f398fbee9adb765367c516ebd4220889b6a81e9626e7228bbe0d66237abb311573c2ee1f4902a5ad
   languageName: node
   linkType: hard
+
+"windpeak@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "windpeak@workspace:."
+  dependencies:
+    "@babel/core": ^7.14.6
+    "@babel/eslint-parser": ^7.14.7
+    "@babel/preset-env": ^7.14.7
+    "@babel/preset-typescript": ^7.28.5
+    "@tailwindcss/forms": ^0.5.10
+    "@tailwindcss/postcss": ^4
+    "@tailwindcss/typography": ^0.5.10
+    "@types/jquery": ^3.5.33
+    "@wordpress/eslint-plugin": ^9.0.6
+    babel-loader: ^8.2.2
+    browser-sync: ^2.27.4
+    browser-sync-webpack-plugin: ^2.3.0
+    copy-webpack-plugin: ^13.0.1
+    css-loader: ^6
+    css-minimizer-webpack-plugin: ^7.0.4
+    dotenv: ^17.2.3
+    eslint: ^8
+    eslint-config-google: ^0.14.0
+    eslint-config-prettier: ^8.3.0
+    jquery: ^3.7.1
+    lint-staged: ^15
+    mini-css-extract-plugin: ^2.1.0
+    postcss: ^8.4.31
+    postcss-loader: ^6.1.1
+    postcss-preset-env: ^6.7.0
+    prettier: ^3
+    rimraf: ^6.1.2
+    rustywind: ^0.24.3
+    simple-git-hooks: ^2
+    stylelint: ^16
+    stylelint-webpack-plugin: ^5
+    tailwindcss: ^4
+    typescript: ^5.9.3
+    webpack: ^5
+    webpack-cli: ^5
+  languageName: unknown
+  linkType: soft
 
 "word-wrap@npm:^1.2.5":
   version: 1.2.5
