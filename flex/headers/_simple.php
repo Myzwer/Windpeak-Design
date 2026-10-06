@@ -1,53 +1,83 @@
 <?php
 	/**
-	 * Displays a simple header with centered text and optional buttons.
+	 * Simple header.
+	 *
+	 * Full-bleed primary topo band with left-aligned eyebrow, title, and CTA.
+	 * Transparent navbar overlays the same band (see background.css).
 	 */
 
-	$primary_button   = get_sub_field( 'primary_button' );
-	$secondary_button = get_sub_field( 'secondary_button' );
-	$subtitle         = get_sub_field( 'small_subtitle' );
-	$heading          = get_sub_field( 'main_title' );
+	if ( ! defined( 'ABSPATH' ) ) {
+		exit;
+	}
+
+	$eyebrow = get_sub_field( 'eyebrow' );
+	$heading = get_sub_field( 'title' );
+	$button  = get_sub_field( 'button' );
+
+	$topography = function_exists( 'get_field' ) ? get_field( 'topography', 'option' ) : null;
+	$topo_url   = '';
+
+	if ( is_array( $topography ) && ! empty( $topography['url'] ) ) {
+		$topo_url = (string) $topography['url'];
+	} elseif ( is_numeric( $topography ) ) {
+		$url = wp_get_attachment_image_url( (int) $topography, 'full' );
+		$topo_url = $url ? (string) $url : '';
+	} elseif ( is_string( $topography ) && '' !== $topography ) {
+		$topo_url = $topography;
+	}
+
+	$section_classes = 'simple-header section bg-primary-gradient';
+
+	if ( $topo_url ) {
+		$section_classes .= ' bg-texture';
+	}
 ?>
 
-<div class="bg-black">
-	<div
-		class="relative bg-no-repeat bg-cover bg-texture"
-		style="height: 30vh; --bg-texture: url('<?php echo esc_url( get_template_directory_uri() . '/assets/public/img/topography.png' ); ?>');"
-	>
-		<div class="px-5 text-center content-middle text-pretty">
-			<?php if ( $subtitle ) : ?>
-				<div class="center add-padding">
-					<p class="pb-2 text-xl font-bold text-white md:text-2xl"><?php echo esc_html( $subtitle ); ?></p>
-				</div>
-			<?php endif; ?>
+<section
+	class="<?php echo esc_attr( $section_classes ); ?>"
+	<?php if ( $topo_url ) : ?>
+		style="--bg-texture: url('<?php echo esc_url( $topo_url ); ?>');"
+	<?php endif; ?>
+>
+	<div class="simple-header-shell">
+		<div class="wrap-wide grid-12 !px-8 lg:!px-12">
+			<div class="grid col-span-12 justify-items-start text-left">
 
-			<?php if ( $heading ) : ?>
-				<h1 class="text-3xl font-bold text-white uppercase md:text-5xl"><?php echo esc_html( $heading ); ?></h1>
-			<?php endif; ?>
+				<?php if ( $eyebrow ) : ?>
+					<p class="photo-hero-eyebrow">
+						<?php echo esc_html( $eyebrow ); ?>
+					</p>
+				<?php endif; ?>
 
-			<?php if ( $primary_button || $secondary_button ) : ?>
-				<div class="inline-flex flex-wrap gap-4 justify-center pt-5">
-					<?php if ( $primary_button ) :
-						$url = esc_url( $primary_button['url'] );
-						$label  = esc_html( $primary_button['title'] );
-						$target = $primary_button['target'] ? esc_attr( $primary_button['target'] ) : '_self';
-						?>
-						<a class="btn_main" href="<?php echo $url; ?>" target="<?php echo $target; ?>">
-							<?php echo $label; ?>
-						</a>
+				<?php if ( $heading ) : ?>
+					<h1 class="heading-1 max-md:!text-4xl md:max-lg:!text-5xl">
+						<?php echo esc_html( $heading ); ?>
+					</h1>
+				<?php endif; ?>
+
+				<?php if ( $button ) : ?>
+					<?php
+						$button_url    = esc_url( $button['url'] ?? '' );
+						$button_label  = esc_html( $button['title'] ?? '' );
+						$button_target = ! empty( $button['target'] ) ? esc_attr( $button['target'] ) : '_self';
+						$button_rel    = '_blank' === $button_target ? 'noopener noreferrer' : '';
+					?>
+
+					<?php if ( $button_url && $button_label ) : ?>
+						<div class="flex flex-wrap gap-4 justify-start mt-8">
+							<a
+								class="border border-black shadow-md btn_main min-w-56"
+								href="<?php echo $button_url; ?>"
+								target="<?php echo $button_target; ?>"
+								<?php echo $button_rel ? 'rel="' . esc_attr( $button_rel ) . '"' : ''; ?>
+							>
+								<?php echo $button_label; ?>
+							</a>
+						</div>
 					<?php endif; ?>
+				<?php endif; ?>
 
-					<?php if ( $secondary_button ) :
-						$url = esc_url( $secondary_button['url'] );
-						$label  = esc_html( $secondary_button['title'] );
-						$target = $secondary_button['target'] ? esc_attr( $secondary_button['target'] ) : '_self';
-						?>
-						<a class="btn_ghost_white" href="<?php echo $url; ?>" target="<?php echo $target; ?>">
-							<?php echo $label; ?>
-						</a>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
+			</div>
 		</div>
 	</div>
-</div>
+</section>

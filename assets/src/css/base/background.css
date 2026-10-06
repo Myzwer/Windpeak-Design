@@ -65,7 +65,8 @@
 }
 
 body:has(.video-header) .site-header,
-body:has(.photo-header) .site-header {
+body:has(.photo-header) .site-header,
+body:has(.simple-header) .site-header {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -75,7 +76,8 @@ body:has(.photo-header) .site-header {
 
 /* Darker ACF topo asset — pull back ~30% from the global .bg-texture opacity (0.25). */
 .video-header.bg-texture:after,
-.photo-header.bg-texture:after {
+.photo-header.bg-texture:after,
+.simple-header.bg-texture:after {
 	opacity: 0.175;
 }
 
@@ -91,6 +93,28 @@ body:has(.photo-header) .site-header {
 		padding-inline: 1.75rem;
 		padding-bottom: 1.75rem;
 	}
+}
+
+/* ---------------------------------------------------------
+   Simple header (topo band, no media frame)
+   ---------------------------------------------------------
+   Structure:
+     .simple-header
+       .simple-header-shell
+         .wrap-wide.grid-12
+           content
+
+   Notes:
+   - Full-bleed primary gradient + topo (no rounded media card).
+   - Shell clears the absolute navbar; content is left-aligned.
+*/
+
+.simple-header-shell {
+	display: grid;
+	align-content: center;
+	min-height: clamp(22rem, 52vh, 34rem);
+	padding-top: calc(var(--site-header-height) + 1.5rem);
+	padding-bottom: clamp(2.5rem, 6vh, 4.5rem);
 }
 
 .video-hero-tagline {
