@@ -1,72 +1,63 @@
 <?php
 	/**
-	 * List content block.
-	 *
-	 * Renders a repeating list of titled items with optional descriptive text.
-	 *
-	 * Used in:
-	 * - service lists
-	 * - feature highlights
-	 * - informational bullet sections
-	 *
-	 * Content is sourced from ACF Flexible Content fields.
-	 *
-	 * Notes:
-	 * - Items are generated from a repeater field.
-	 * - Item descriptions use WYSIWYG editors for light formatting.
-	 * - Optional button may appear after the list.
+	 * List block — icon + title grid with optional intro and CTA.
 	 */
 
 	if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 	}
 
+	$intro          = get_sub_field( 'intro' );
+	$link           = get_sub_field( 'link' );
+	$has_items_rows = get_sub_field( 'list_items' ) ?: array();
+	$has_items      = ! empty( $has_items_rows );
 
-	$intro = get_sub_field( 'intro' );
-	$link  = get_sub_field( 'link' );
+	if ( ! $intro && ! $has_items && empty( $link['url'] ) ) {
+		return;
+	}
 ?>
 
-<section class="py-10 wrap">
-	<div class="grid-12">
-		<div class="col-span-12">
-			<?php if ( $intro ) : ?>
-				<div class="prose-theme"><?php echo wp_kses_post( $intro ); ?></div>
-			<?php endif; ?>
-		</div>
-
-		<div class="col-span-12">
-			<div class="grid-12">
-				<?php if ( have_rows( 'list_items' ) ) : ?>
-					<?php while ( have_rows( 'list_items' ) ) : the_row(); ?>
-						<article class="col-span-12 pb-5 md:col-span-6">
-							<?php $title = get_sub_field( 'list_item_title' ); ?>
-							<?php $subtext = get_sub_field( 'list_item_subtext' ); ?>
-
-							<?php if ( $title ) : ?>
-								<h4 class="heading-4"><?php echo esc_html( $title ); ?></h4>
-							<?php endif; ?>
-
-							<?php if ( $subtext ) : ?>
-								<div class="prose-theme"><?php echo wp_kses_post( $subtext ); ?></div>
-							<?php endif; ?>
-						</article>
-					<?php endwhile; ?>
-				<?php endif; ?>
+<section class="py-14 md:py-20 wrap">
+	<div class="md:gap-8 grid-12">
+		<?php if ( $intro ) : ?>
+			<div class="col-span-12">
+				<div class="prose-theme">
+					<?php echo wp_kses_post( $intro ); ?>
+				</div>
 			</div>
+		<?php endif; ?>
 
-			<div class="grid-12">
-				<?php if ( ! empty( $link['url'] ) ) : ?>
-					<div class="col-span-12 mx-auto text-center">
-						<a
-							class="btn_main"
-							href="<?php echo esc_url( $link['url'] ); ?>"
-							<?php echo ! empty( $link['target'] ) ? ' target="' . esc_attr( $link['target'] ) . '" rel="noopener noreferrer"' : ''; ?>
-						>
-							<span><?php echo esc_html( $link['title'] ?: 'Learn More' ); ?></span>
-						</a>
+		<?php if ( $has_items ) : ?>
+			<?php while ( have_rows( 'list_items' ) ) : the_row(); ?>
+				<?php
+				$icon  = get_sub_field( 'icon' );
+				$title = get_sub_field( 'list_item_title' );
+				?>
+				<div class="col-span-12 sm:col-span-6">
+					<div class="flex gap-4 items-start">
+						<?php if ( $icon ) : ?>
+							<span class="text-2xl shrink-0 [&>i]:text-black" aria-hidden="true">
+								<?php echo $icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- FA element from ACF ?>
+							</span>
+						<?php endif; ?>
+						<?php if ( $title ) : ?>
+							<p class="mb-2 text-lg font-bold"><?php echo esc_html( $title ); ?></p>
+						<?php endif; ?>
 					</div>
-				<?php endif; ?>
+				</div>
+			<?php endwhile; ?>
+		<?php endif; ?>
+
+		<?php if ( ! empty( $link['url'] ) ) : ?>
+			<div class="col-span-12 pt-4 text-center">
+				<a
+					class="border border-black shadow-md btn_main"
+					href="<?php echo esc_url( $link['url'] ); ?>"
+					<?php echo ! empty( $link['target'] ) ? ' target="' . esc_attr( $link['target'] ) . '" rel="noopener noreferrer"' : ''; ?>
+				>
+					<span><?php echo esc_html( $link['title'] ?: 'Learn More' ); ?></span>
+				</a>
 			</div>
-		</div>
+		<?php endif; ?>
 	</div>
 </section>

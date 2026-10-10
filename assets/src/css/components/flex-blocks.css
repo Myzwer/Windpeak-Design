@@ -1,0 +1,176 @@
+/**
+ * Image + Text block banner
+ * CSS-cropped wide frame; image fills and covers.
+ */
+
+.image-text-banner {
+	@apply relative w-full overflow-hidden rounded-2xl;
+	/* Decorative crop. Mobile stays a bit taller so the strip still reads. */
+	aspect-ratio: 2 / 1;
+}
+
+@media (min-width: 768px) {
+	.image-text-banner {
+		aspect-ratio: 3 / 1;
+	}
+}
+
+.image-text-banner img {
+	@apply absolute inset-0 h-full w-full object-cover object-center;
+}
+
+/**
+ * Bio block photos — 1:1 crop.
+ */
+
+.bio-photo {
+	@apply relative w-full overflow-hidden rounded-2xl;
+	aspect-ratio: 1 / 1;
+}
+
+.bio-photo img {
+	@apply absolute inset-0 h-full w-full object-cover object-center;
+}
+
+/**
+ * Selection block — compact icon boxes with labels underneath.
+ */
+
+.selection-intro :is(h2, h3) {
+	@apply mb-3;
+}
+
+.selection-intro :is(p) {
+	@apply mb-0 max-w-none;
+}
+
+/* 4 to 6 tiles in a centered row, detail centered underneath. */
+.selection-intro {
+	@apply text-center;
+}
+
+.selection-layout {
+	@apply flex flex-col items-center gap-10 md:gap-12;
+}
+
+.selection-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	column-gap: 1.25rem;
+	row-gap: 1.75rem;
+	width: 100%;
+}
+
+.selection-item {
+	@apply flex w-[8.75rem] cursor-pointer flex-col items-center gap-4 text-center;
+	@apply focus-visible:outline-none;
+}
+
+@media (min-width: 768px) {
+	.selection-grid {
+		column-gap: 1.75rem;
+	}
+
+	.selection-item {
+		width: 9.5rem;
+	}
+}
+
+.selection-detail {
+	@apply w-full max-w-2xl text-center;
+}
+
+.selection-panel .prose-theme {
+	@apply text-center;
+}
+
+.selection-panel .prose-theme :is(h2, h3) {
+	@apply mb-3;
+}
+
+.selection-tile {
+	@apply flex size-[6.25rem] items-center justify-center rounded-2xl bg-white text-black shadow-sm;
+	transition:
+		background-color 180ms ease,
+		box-shadow 220ms ease,
+		transform 220ms ease;
+}
+
+.selection-item:focus-visible .selection-tile {
+	@apply ring-2 ring-black ring-offset-2;
+}
+
+.selection-item.is-active .selection-tile {
+	background-color: var(--color-primary);
+	color: #000000;
+	transform: translateY(-2px);
+	box-shadow:
+		0 0 0 5px #ffffff,
+		0 0 0 9px var(--color-primary),
+		0 10px 16px rgb(15 23 42 / 0.14);
+}
+
+.selection-tile__icon {
+	@apply text-3xl leading-none;
+}
+
+.selection-tile__icon i {
+	@apply text-[1em];
+}
+
+.selection-tile__label {
+	@apply max-w-[11rem] text-[0.8125rem] font-bold uppercase leading-snug tracking-wide;
+}
+
+.selection-panel :is(h2, h3, p):first-child {
+	margin-top: 0;
+}
+
+.selection-panel.is-entering {
+	animation: selection-panel-in 280ms ease;
+}
+
+.selection-panel[hidden] {
+	display: none;
+}
+
+@keyframes selection-panel-in {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.selection-tile {
+		transition: none;
+	}
+
+	.selection-item.is-active .selection-tile {
+		transform: none;
+	}
+
+	.selection-panel.is-entering {
+		animation: none;
+	}
+}
+
+/**
+ * Laptop / device mockup frame for project screenshots.
+ * Prefer uploading full laptop mockup PNGs when available;
+ * this class still softens raw screenshots.
+ */
+
+.laptop-frame {
+	@apply relative;
+}
+
+.laptop-frame img {
+	@apply w-full h-auto drop-shadow-xl;
+}

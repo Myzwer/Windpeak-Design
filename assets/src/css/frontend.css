@@ -24,5 +24,6 @@
 /* Components */
 @import "./components/accordion.css";
 @import "./components/cards.css";
+@import "./components/flex-blocks.css";
 @import "./components/gravity-forms.css";
 @import "./components/pagination.css";

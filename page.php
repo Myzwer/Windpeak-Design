@@ -80,7 +80,8 @@
 		$background_index = 0;
 
 		$background_excluded_layouts = array(
-			'announcement_block',
+			'quote_block',
+			'pricing_block',
 		);
 
 		// Even stripes use the palette topography (branded, or black on a season).

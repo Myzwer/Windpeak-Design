@@ -60,7 +60,7 @@
 							"name": "image",
 							"aria-label": "",
 							"type": "image",
-							"instructions": "Use a clear, high-quality image. Landscape images usually work best. Avoid tiny or blurry images. Large images (over 2MB) can slow down your website.",
+							"instructions": "Use a clear, high-quality image. Avoid tiny or blurry images.",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
@@ -76,9 +76,42 @@
 							"max_width": "",
 							"max_height": "",
 							"max_size": "",
-							"mime_types": "jpg,jpeg,png,webp",
+							"mime_types": "jpg,jpeg,png,webp,gif,svg",
 							"allow_in_bindings": 1,
 							"preview_size": "medium"
+						},
+						{
+							"key": "field_wpk_slot_image_text",
+							"label": "Seasonal Photo",
+							"name": "seasonal_slot",
+							"aria-label": "",
+							"type": "select",
+							"instructions": "Windpeak keeps the photo on this block. A season replaces it with that numbered image from Globals → Seasonal Images.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"choices": [
+								"None — keep this photo",
+								"Globals image 1",
+								"Globals image 2",
+								"Globals image 3",
+								"Globals image 4",
+								"Globals image 5"
+							],
+							"default_value": 0,
+							"return_format": "value",
+							"multiple": 0,
+							"allow_null": 0,
+							"allow_in_bindings": 0,
+							"ui": 0,
+							"ajax": 0,
+							"placeholder": "",
+							"create_options": 0,
+							"save_options": 0
 						},
 						{
 							"key": "field_plwp_1003",
@@ -86,7 +119,7 @@
 							"name": "content",
 							"aria-label": "",
 							"type": "wysiwyg",
-							"instructions": "You can add additional headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
@@ -105,57 +138,61 @@
 					"min": "",
 					"max": ""
 				},
-				"layout_69d5dc91abe3e": {
-					"key": "layout_69d5dc91abe3e",
-					"name": "video_block",
-					"label": "Video Block",
+				"layout_wpk_cta": {
+					"key": "layout_wpk_cta",
+					"name": "cta_block",
+					"label": "CTA Block",
 					"display": "block",
 					"sub_fields": [
 						{
-							"key": "field_plwp_1006",
-							"label": "Intro",
-							"name": "intro",
+							"key": "field_wpk_cta_heading",
+							"label": "Heading",
+							"name": "heading",
 							"aria-label": "",
-							"type": "wysiwyg",
-							"instructions": "You can add additional headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"type": "textarea",
+							"instructions": "One line per stacked heading line.",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
-								"width": "",
+								"width": "50",
 								"class": "",
 								"id": ""
 							},
 							"default_value": "",
+							"maxlength": "",
 							"allow_in_bindings": 1,
-							"tabs": "all",
-							"toolbar": "full",
-							"media_upload": 0,
-							"delay": 0
+							"placeholder": "",
+							"rows": 3,
+							"new_lines": ""
 						},
 						{
-							"key": "field_plwp_1007",
-							"label": "Video",
-							"name": "video",
-							"aria-label": "",
-							"type": "oembed",
-							"instructions": "Paste in a supported video URL, such as YouTube or Vimeo.",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"height": "",
-							"width": ""
-						},
-						{
-							"key": "field_plwp_1008",
-							"label": "Content",
+							"key": "field_wpk_cta_content",
+							"label": "Supporting Line",
 							"name": "content",
 							"aria-label": "",
-							"type": "wysiwyg",
-							"instructions": "You can add additional headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"type": "text",
+							"instructions": "Short line beside the heading (e.g. We got you. :))",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"allow_in_bindings": 1,
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_cta_link",
+							"label": "Button",
+							"name": "link",
+							"aria-label": "",
+							"type": "link",
+							"instructions": "",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
@@ -163,12 +200,7 @@
 								"class": "",
 								"id": ""
 							},
-							"default_value": "",
-							"allow_in_bindings": 1,
-							"tabs": "all",
-							"toolbar": "full",
-							"media_upload": 0,
-							"delay": 0
+							"return_format": "array"
 						}
 					],
 					"min": "",
@@ -186,7 +218,7 @@
 							"name": "intro",
 							"aria-label": "",
 							"type": "wysiwyg",
-							"instructions": "You can add additional headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
@@ -215,13 +247,41 @@
 								"class": "",
 								"id": ""
 							},
-							"min": 1,
-							"max": 0,
 							"layout": "block",
-							"button_label": "Add List Item",
+							"pagination": 0,
+							"min": 0,
+							"max": 0,
 							"collapsed": "field_plwp_1011",
+							"button_label": "Add List Item",
 							"rows_per_page": 20,
 							"sub_fields": [
+								{
+									"key": "field_wpk_list_icon",
+									"label": "Icon",
+									"name": "icon",
+									"aria-label": "",
+									"type": "font-awesome",
+									"instructions": "Pick from the Solid set for a consistent look.",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "20",
+										"class": "",
+										"id": ""
+									},
+									"icon_sets": ["solid"],
+									"custom_icon_set": "",
+									"fa_live_preview": "",
+									"default_label": "",
+									"default_value": "",
+									"save_format": "element",
+									"allow_null": 1,
+									"show_preview": 1,
+									"enqueue_fa": 0,
+									"allow_in_bindings": 0,
+									"parent_repeater": "field_plwp_1013",
+									"choices": []
+								},
 								{
 									"key": "field_plwp_1011",
 									"label": "List Item Title",
@@ -232,156 +292,22 @@
 									"required": 0,
 									"conditional_logic": 0,
 									"wrapper": {
-										"width": "40",
+										"width": "80",
 										"class": "",
 										"id": ""
 									},
 									"default_value": "",
 									"maxlength": "",
+									"allow_in_bindings": 1,
 									"placeholder": "",
 									"prepend": "",
 									"append": "",
-									"parent_repeater": "field_plwp_1013"
-								},
-								{
-									"key": "field_plwp_1012",
-									"label": "List Item Subtext",
-									"name": "list_item_subtext",
-									"aria-label": "",
-									"type": "wysiwyg",
-									"instructions": "",
-									"required": 0,
-									"conditional_logic": 0,
-									"wrapper": {
-										"width": "60",
-										"class": "",
-										"id": ""
-									},
-									"default_value": "",
-									"allow_in_bindings": 1,
-									"tabs": "all",
-									"toolbar": "full",
-									"media_upload": 0,
-									"delay": 0,
 									"parent_repeater": "field_plwp_1013"
 								}
 							]
 						},
 						{
 							"key": "field_plwp_1014",
-							"label": "Button (Optional)",
-							"name": "link",
-							"aria-label": "",
-							"type": "link",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"return_format": "array"
-						}
-					],
-					"min": "",
-					"max": ""
-				},
-				"layout_69d5dd5cabe42": {
-					"key": "layout_69d5dd5cabe42",
-					"name": "process_block",
-					"label": "Process Block",
-					"display": "block",
-					"sub_fields": [
-						{
-							"key": "field_plwp_1016",
-							"label": "Intro",
-							"name": "intro",
-							"aria-label": "",
-							"type": "wysiwyg",
-							"instructions": "You can add additional headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"default_value": "",
-							"allow_in_bindings": 1,
-							"tabs": "all",
-							"toolbar": "full",
-							"media_upload": 0,
-							"delay": 0
-						},
-						{
-							"key": "field_plwp_1019",
-							"label": "Steps",
-							"name": "steps",
-							"aria-label": "",
-							"type": "repeater",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"min": 1,
-							"max": 0,
-							"layout": "block",
-							"button_label": "Add Step",
-							"collapsed": "field_plwp_1017",
-							"rows_per_page": 20,
-							"sub_fields": [
-								{
-									"key": "field_plwp_1017",
-									"label": "Step Title",
-									"name": "step_title",
-									"aria-label": "",
-									"type": "text",
-									"instructions": "",
-									"required": 0,
-									"conditional_logic": 0,
-									"wrapper": {
-										"width": "40",
-										"class": "",
-										"id": ""
-									},
-									"default_value": "",
-									"maxlength": "",
-									"placeholder": "",
-									"prepend": "",
-									"append": "",
-									"parent_repeater": "field_plwp_1019"
-								},
-								{
-									"key": "field_plwp_1018",
-									"label": "Step Text",
-									"name": "step_text",
-									"aria-label": "",
-									"type": "wysiwyg",
-									"instructions": "You can add process text, inline links and buttons using the tools below. For SEO reasons, do not use any headers here.",
-									"required": 0,
-									"conditional_logic": 0,
-									"wrapper": {
-										"width": "60",
-										"class": "",
-										"id": ""
-									},
-									"default_value": "",
-									"allow_in_bindings": 1,
-									"tabs": "all",
-									"toolbar": "full",
-									"media_upload": 0,
-									"delay": 0,
-									"parent_repeater": "field_plwp_1019"
-								}
-							]
-						},
-						{
-							"key": "field_plwp_1020",
 							"label": "Button (Optional)",
 							"name": "link",
 							"aria-label": "",
@@ -412,28 +338,7 @@
 							"name": "intro",
 							"aria-label": "",
 							"type": "wysiwyg",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"default_value": "",
-							"allow_in_bindings": 0,
-							"tabs": "all",
-							"toolbar": "full",
-							"media_upload": 1,
-							"delay": 0
-						},
-						{
-							"key": "field_plwp_1022",
-							"label": "Quote",
-							"name": "quote",
-							"aria-label": "",
-							"type": "wysiwyg",
-							"instructions": "You can add italics, links, and other basic formatting using the tools below. For SEO reasons, do not use any headers or buttons here.",
+							"instructions": "Section heading and any lead-in. For SEO reasons, do not use an H1.",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
@@ -449,30 +354,25 @@
 							"delay": 0
 						},
 						{
-							"key": "field_plwp_1023",
-							"label": "Image",
-							"name": "image",
+							"key": "field_plwp_1022",
+							"label": "Quote",
+							"name": "quote",
 							"aria-label": "",
-							"type": "image",
-							"instructions": "Use a clear, high-quality image. A square or portrait image usually works best for profile photos. Avoid tiny or blurry images. Large images (over 2MB) can slow down your website.",
+							"type": "wysiwyg",
+							"instructions": "You can add italics, links, and other basic formatting. For SEO reasons, do not use any headers or buttons here.",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
-								"width": "34",
+								"width": "",
 								"class": "",
 								"id": ""
 							},
-							"return_format": "array",
-							"library": "all",
-							"min_width": "",
-							"min_height": "",
-							"min_size": "",
-							"max_width": "",
-							"max_height": "",
-							"max_size": "",
-							"mime_types": "jpg,jpeg,png,webp",
+							"default_value": "",
 							"allow_in_bindings": 1,
-							"preview_size": "medium"
+							"tabs": "all",
+							"toolbar": "full",
+							"media_upload": 0,
+							"delay": 0
 						},
 						{
 							"key": "field_plwp_1024",
@@ -484,12 +384,13 @@
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
-								"width": "33",
+								"width": "50",
 								"class": "",
 								"id": ""
 							},
 							"default_value": "",
 							"maxlength": "",
+							"allow_in_bindings": 1,
 							"placeholder": "",
 							"prepend": "",
 							"append": ""
@@ -500,259 +401,20 @@
 							"name": "attribution",
 							"aria-label": "",
 							"type": "text",
-							"instructions": "This could be a title, location, company, etc.",
+							"instructions": "Title, company, location, etc.",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
-								"width": "33",
+								"width": "50",
 								"class": "",
 								"id": ""
 							},
 							"default_value": "",
 							"maxlength": "",
+							"allow_in_bindings": 1,
 							"placeholder": "",
 							"prepend": "",
 							"append": ""
-						}
-					],
-					"min": "",
-					"max": ""
-				},
-				"layout_69d5dd9dabe46": {
-					"key": "layout_69d5dd9dabe46",
-					"name": "announcement_block",
-					"label": "Announcement Block",
-					"display": "block",
-					"sub_fields": [
-						{
-							"key": "field_plwp_1027",
-							"label": "Announcement",
-							"name": "announcement",
-							"aria-label": "",
-							"type": "wysiwyg",
-							"instructions": "You can add additional headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"default_value": "",
-							"allow_in_bindings": 1,
-							"tabs": "all",
-							"toolbar": "full",
-							"media_upload": 0,
-							"delay": 0
-						},
-						{
-							"key": "field_plwp_1028",
-							"label": "Button (Optional)",
-							"name": "link",
-							"aria-label": "",
-							"type": "link",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"return_format": "array"
-						}
-					],
-					"min": "",
-					"max": ""
-				},
-				"layout_69d5dda4abe48": {
-					"key": "layout_69d5dda4abe48",
-					"name": "faq_block",
-					"label": "FAQ Block",
-					"display": "block",
-					"sub_fields": [
-						{
-							"key": "field_plwp_1030",
-							"label": "Intro",
-							"name": "intro",
-							"aria-label": "",
-							"type": "wysiwyg",
-							"instructions": "You can add additional headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"default_value": "",
-							"allow_in_bindings": 1,
-							"tabs": "all",
-							"toolbar": "full",
-							"media_upload": 0,
-							"delay": 0
-						},
-						{
-							"key": "field_plwp_1033",
-							"label": "FAQs",
-							"name": "faqs",
-							"aria-label": "",
-							"type": "repeater",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"min": 1,
-							"max": 0,
-							"layout": "table",
-							"button_label": "Add FAQ",
-							"collapsed": "field_plwp_1031",
-							"rows_per_page": 20,
-							"sub_fields": [
-								{
-									"key": "field_plwp_1031",
-									"label": "Question",
-									"name": "faq_question",
-									"aria-label": "",
-									"type": "text",
-									"instructions": "",
-									"required": 0,
-									"conditional_logic": 0,
-									"wrapper": {
-										"width": "40",
-										"class": "",
-										"id": ""
-									},
-									"default_value": "",
-									"maxlength": "",
-									"placeholder": "",
-									"parent_repeater": "field_plwp_1033",
-									"prepend": "",
-									"append": ""
-								},
-								{
-									"key": "field_plwp_1032",
-									"label": "Answer",
-									"name": "faq_answer",
-									"aria-label": "",
-									"type": "textarea",
-									"instructions": "",
-									"required": 0,
-									"conditional_logic": 0,
-									"wrapper": {
-										"width": "60",
-										"class": "",
-										"id": ""
-									},
-									"default_value": "",
-									"maxlength": "",
-									"placeholder": "",
-									"rows": 4,
-									"new_lines": "",
-									"parent_repeater": "field_plwp_1033"
-								}
-							]
-						}
-					],
-					"min": "",
-					"max": ""
-				},
-				"layout_69d5ddafabe4a": {
-					"key": "layout_69d5ddafabe4a",
-					"name": "accordion_block",
-					"label": "Accordion Block",
-					"display": "block",
-					"sub_fields": [
-						{
-							"key": "field_plwp_1035",
-							"label": "Intro",
-							"name": "intro",
-							"aria-label": "",
-							"type": "wysiwyg",
-							"instructions": "You can add additional headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"default_value": "",
-							"allow_in_bindings": 1,
-							"tabs": "all",
-							"toolbar": "full",
-							"media_upload": 0,
-							"delay": 0
-						},
-						{
-							"key": "field_plwp_1038",
-							"label": "Accordion Items",
-							"name": "accordion_items",
-							"aria-label": "",
-							"type": "repeater",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"min": 1,
-							"max": 0,
-							"layout": "block",
-							"button_label": "Add Accordion Item",
-							"collapsed": "field_plwp_1036",
-							"rows_per_page": 20,
-							"sub_fields": [
-								{
-									"key": "field_plwp_1036",
-									"label": "Item Title",
-									"name": "accordion_title",
-									"aria-label": "",
-									"type": "text",
-									"instructions": "",
-									"required": 0,
-									"conditional_logic": 0,
-									"wrapper": {
-										"width": "35",
-										"class": "",
-										"id": ""
-									},
-									"default_value": "",
-									"maxlength": "",
-									"placeholder": "",
-									"prepend": "",
-									"append": "",
-									"parent_repeater": "field_plwp_1038"
-								},
-								{
-									"key": "field_plwp_1037",
-									"label": "Item Content",
-									"name": "accordion_content",
-									"aria-label": "",
-									"type": "wysiwyg",
-									"instructions": "You can add text, inline links and buttons using the tools below. For SEO reasons, do not use any headers here.",
-									"required": 0,
-									"conditional_logic": 0,
-									"wrapper": {
-										"width": "",
-										"class": "",
-										"id": ""
-									},
-									"default_value": "",
-									"allow_in_bindings": 1,
-									"tabs": "all",
-									"toolbar": "full",
-									"media_upload": 0,
-									"delay": 0,
-									"parent_repeater": "field_plwp_1038"
-								}
-							]
 						}
 					],
 					"min": "",
@@ -770,7 +432,7 @@
 							"name": "intro",
 							"aria-label": "",
 							"type": "wysiwyg",
-							"instructions": "You can add additional headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
@@ -799,14 +461,18 @@
 								"class": "",
 								"id": ""
 							},
+							"choices": {
+								"3": "Advisor Micro Intake (ID 3)",
+								"1": "Sample Form (ID 1)",
+								"2": "Start the Process (ID 2)"
+							},
 							"default_value": false,
-							"placeholder": "Select a form",
-							"choices": {},
 							"return_format": "value",
 							"multiple": 0,
 							"allow_null": 1,
 							"ui": 1,
 							"ajax": 0,
+							"placeholder": "Select a form",
 							"create_options": 0,
 							"save_options": 0
 						}
@@ -814,19 +480,78 @@
 					"min": "",
 					"max": ""
 				},
-				"layout_69d5dde1abe4e": {
-					"key": "layout_69d5dde1abe4e",
-					"name": "cards_block",
-					"label": "Cards Block",
+				"layout_69d5ddafabe4a": {
+					"key": "layout_69d5ddafabe4a",
+					"name": "accordion_block",
+					"label": "Accordion Block",
 					"display": "block",
 					"sub_fields": [
 						{
-							"key": "field_plwp_1043",
+							"key": "field_wpk_acc_image",
+							"label": "Image",
+							"name": "image",
+							"aria-label": "",
+							"type": "image",
+							"instructions": "Optional rounded banner above the accordion.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "",
+							"mime_types": "jpg,jpeg,png,webp,gif,svg",
+							"allow_in_bindings": 1,
+							"preview_size": "medium"
+						},
+						{
+							"key": "field_wpk_slot_accordion",
+							"label": "Seasonal Photo",
+							"name": "seasonal_slot",
+							"aria-label": "",
+							"type": "select",
+							"instructions": "Windpeak keeps the photo on this block. A season replaces it with that numbered image from Globals → Seasonal Images.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"choices": [
+								"None — keep this photo",
+								"Globals image 1",
+								"Globals image 2",
+								"Globals image 3",
+								"Globals image 4",
+								"Globals image 5"
+							],
+							"default_value": 0,
+							"return_format": "value",
+							"multiple": 0,
+							"allow_null": 0,
+							"allow_in_bindings": 0,
+							"ui": 0,
+							"ajax": 0,
+							"placeholder": "",
+							"create_options": 0,
+							"save_options": 0
+						},
+						{
+							"key": "field_plwp_1035",
 							"label": "Intro",
 							"name": "intro",
 							"aria-label": "",
 							"type": "wysiwyg",
-							"instructions": "You can add additional headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
@@ -842,9 +567,9 @@
 							"delay": 0
 						},
 						{
-							"key": "field_plwp_1046",
-							"label": "Cards",
-							"name": "cards",
+							"key": "field_plwp_1038",
+							"label": "Accordion Items",
+							"name": "accordion_items",
 							"aria-label": "",
 							"type": "repeater",
 							"instructions": "",
@@ -855,17 +580,18 @@
 								"class": "",
 								"id": ""
 							},
-							"min": 1,
+							"layout": "block",
+							"pagination": 0,
+							"min": 0,
 							"max": 0,
-							"layout": "table",
-							"button_label": "Add Card",
-							"collapsed": "field_plwp_1044",
+							"collapsed": "field_plwp_1036",
+							"button_label": "Add Accordion Item",
 							"rows_per_page": 20,
 							"sub_fields": [
 								{
-									"key": "field_plwp_1044",
-									"label": "Card Title",
-									"name": "card_title",
+									"key": "field_plwp_1036",
+									"label": "Item Title",
+									"name": "accordion_title",
 									"aria-label": "",
 									"type": "text",
 									"instructions": "",
@@ -878,36 +604,224 @@
 									},
 									"default_value": "",
 									"maxlength": "",
+									"allow_in_bindings": 1,
 									"placeholder": "",
 									"prepend": "",
 									"append": "",
-									"parent_repeater": "field_plwp_1046"
+									"parent_repeater": "field_plwp_1038"
 								},
 								{
-									"key": "field_plwp_1045",
-									"label": "Card Text",
-									"name": "card_text",
+									"key": "field_plwp_1037",
+									"label": "Item Content",
+									"name": "accordion_content",
 									"aria-label": "",
-									"type": "textarea",
+									"type": "wysiwyg",
+									"instructions": "You can add text, inline links and buttons. For SEO reasons, do not use any headers here.",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"allow_in_bindings": 1,
+									"tabs": "all",
+									"toolbar": "full",
+									"media_upload": 0,
+									"delay": 0,
+									"parent_repeater": "field_plwp_1038"
+								}
+							]
+						}
+					],
+					"min": "",
+					"max": ""
+				},
+				"layout_wpk_headers_text": {
+					"key": "layout_wpk_headers_text",
+					"name": "headers_text_block",
+					"label": "Headers and Text Block",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_wpk_ht_header",
+							"label": "Header",
+							"name": "header",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "Small section label (e.g. THE PROCESS).",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"allow_in_bindings": 1,
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_ht_image",
+							"label": "Side Image",
+							"name": "image",
+							"aria-label": "",
+							"type": "image",
+							"instructions": "Use a clear, high-quality image. Avoid tiny or blurry images.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "",
+							"mime_types": "jpg,jpeg,png,webp,gif,svg",
+							"allow_in_bindings": 1,
+							"preview_size": "medium"
+						},
+						{
+							"key": "field_wpk_slot_headers_text",
+							"label": "Seasonal Photo",
+							"name": "seasonal_slot",
+							"aria-label": "",
+							"type": "select",
+							"instructions": "Windpeak keeps the photo on this block. A season replaces it with that numbered image from Globals → Seasonal Images.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"choices": [
+								"None — keep this photo",
+								"Globals image 1",
+								"Globals image 2",
+								"Globals image 3",
+								"Globals image 4",
+								"Globals image 5"
+							],
+							"default_value": 0,
+							"return_format": "value",
+							"multiple": 0,
+							"allow_null": 0,
+							"allow_in_bindings": 0,
+							"ui": 0,
+							"ajax": 0,
+							"placeholder": "",
+							"create_options": 0,
+							"save_options": 0
+						},
+						{
+							"key": "field_wpk_ht_side",
+							"label": "Image Side",
+							"name": "image_side",
+							"aria-label": "",
+							"type": "select",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"choices": {
+								"left": "Left",
+								"right": "Right"
+							},
+							"default_value": "right",
+							"return_format": "value",
+							"multiple": 0,
+							"allow_null": 1,
+							"ui": 0,
+							"ajax": 0,
+							"placeholder": "",
+							"create_options": 0,
+							"save_options": 0
+						},
+						{
+							"key": "field_wpk_ht_items",
+							"label": "Items",
+							"name": "items",
+							"aria-label": "",
+							"type": "repeater",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"layout": "block",
+							"pagination": 0,
+							"min": 0,
+							"max": 0,
+							"collapsed": "field_wpk_ht_item_title",
+							"button_label": "Add Item",
+							"rows_per_page": 20,
+							"sub_fields": [
+								{
+									"key": "field_wpk_ht_item_title",
+									"label": "Item Title",
+									"name": "item_title",
+									"aria-label": "",
+									"type": "text",
 									"instructions": "",
 									"required": 0,
 									"conditional_logic": 0,
 									"wrapper": {
-										"width": "65",
+										"width": "40",
 										"class": "",
 										"id": ""
 									},
 									"default_value": "",
 									"maxlength": "",
+									"allow_in_bindings": 1,
 									"placeholder": "",
-									"rows": 3,
-									"new_lines": "",
-									"parent_repeater": "field_plwp_1046"
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_ht_items"
+								},
+								{
+									"key": "field_wpk_ht_item_text",
+									"label": "Item Text",
+									"name": "item_text",
+									"aria-label": "",
+									"type": "wysiwyg",
+									"instructions": "For SEO reasons, do not use any headers here.",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "60",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"allow_in_bindings": 1,
+									"tabs": "all",
+									"toolbar": "full",
+									"media_upload": 0,
+									"delay": 0,
+									"parent_repeater": "field_wpk_ht_items"
 								}
 							]
 						},
 						{
-							"key": "field_plwp_1047",
+							"key": "field_wpk_ht_link",
 							"label": "Button (Optional)",
 							"name": "link",
 							"aria-label": "",
@@ -926,35 +840,197 @@
 					"min": "",
 					"max": ""
 				},
-				"layout_69d5de6eabe50": {
-					"key": "layout_69d5de6eabe50",
-					"name": "quick_cta",
-					"label": "Call to Action",
+				"layout_wpk_bio": {
+					"key": "layout_wpk_bio",
+					"name": "bio_block",
+					"label": "Bio Block",
 					"display": "block",
 					"sub_fields": [
 						{
-							"key": "field_plwp_1048",
-							"label": "Message",
-							"name": "message",
+							"key": "field_wpk_bio_content",
+							"label": "Content",
+							"name": "content",
 							"aria-label": "",
-							"type": "textarea",
-							"instructions": "",
+							"type": "wysiwyg",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
-								"width": "60",
+								"width": "",
 								"class": "",
 								"id": ""
 							},
 							"default_value": "",
-							"maxlength": "",
-							"placeholder": "",
-							"rows": 2,
-							"new_lines": ""
+							"allow_in_bindings": 1,
+							"tabs": "all",
+							"toolbar": "full",
+							"media_upload": 0,
+							"delay": 0
 						},
 						{
-							"key": "field_plwp_1049",
-							"label": "Button",
+							"key": "field_wpk_bio_photos",
+							"label": "Photos",
+							"name": "photos",
+							"aria-label": "",
+							"type": "gallery",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min": 0,
+							"max": 0,
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "",
+							"mime_types": "jpg,jpeg,png,webp",
+							"insert": "append",
+							"preview_size": "medium"
+						}
+					],
+					"min": "",
+					"max": ""
+				},
+				"layout_wpk_projects": {
+					"key": "layout_wpk_projects",
+					"name": "projects_block",
+					"label": "Projects Block",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_wpk_proj_intro",
+							"label": "Intro",
+							"name": "intro",
+							"aria-label": "",
+							"type": "wysiwyg",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"allow_in_bindings": 1,
+							"tabs": "all",
+							"toolbar": "full",
+							"media_upload": 0,
+							"delay": 0
+						},
+						{
+							"key": "field_wpk_proj_items",
+							"label": "Projects",
+							"name": "projects",
+							"aria-label": "",
+							"type": "repeater",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"layout": "block",
+							"pagination": 0,
+							"min": 0,
+							"max": 0,
+							"collapsed": "field_wpk_proj_content",
+							"button_label": "Add Project",
+							"rows_per_page": 20,
+							"sub_fields": [
+								{
+									"key": "field_wpk_proj_shot",
+									"label": "Screenshot",
+									"name": "screenshot",
+									"aria-label": "",
+									"type": "image",
+									"instructions": "Use a clear, high-quality image. Avoid tiny or blurry images.",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "40",
+										"class": "",
+										"id": ""
+									},
+									"return_format": "array",
+									"library": "all",
+									"min_width": "",
+									"min_height": "",
+									"min_size": "",
+									"max_width": "",
+									"max_height": "",
+									"max_size": "",
+									"mime_types": "jpg,jpeg,png,webp,gif,svg",
+									"allow_in_bindings": 1,
+									"preview_size": "medium",
+									"parent_repeater": "field_wpk_proj_items"
+								},
+								{
+									"key": "field_wpk_proj_side",
+									"label": "Image Side",
+									"name": "image_side",
+									"aria-label": "",
+									"type": "select",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "20",
+										"class": "",
+										"id": ""
+									},
+									"choices": {
+										"left": "Left",
+										"right": "Right"
+									},
+									"default_value": "left",
+									"return_format": "value",
+									"multiple": 0,
+									"allow_null": 1,
+									"ui": 0,
+									"ajax": 0,
+									"placeholder": "",
+									"parent_repeater": "field_wpk_proj_items",
+									"create_options": 0,
+									"save_options": 0
+								},
+								{
+									"key": "field_wpk_proj_content",
+									"label": "Content",
+									"name": "content",
+									"aria-label": "",
+									"type": "wysiwyg",
+									"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "40",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"allow_in_bindings": 1,
+									"tabs": "all",
+									"toolbar": "full",
+									"media_upload": 0,
+									"delay": 0,
+									"parent_repeater": "field_wpk_proj_items"
+								}
+							]
+						},
+						{
+							"key": "field_wpk_proj_link",
+							"label": "Button (Optional)",
 							"name": "link",
 							"aria-label": "",
 							"type": "link",
@@ -962,7 +1038,7 @@
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
-								"width": "40",
+								"width": "",
 								"class": "",
 								"id": ""
 							},
@@ -972,16 +1048,257 @@
 					"min": "",
 					"max": ""
 				},
-				"layout_69d5dec8abe52": {
-					"key": "layout_69d5dec8abe52",
-					"name": "info_block",
-					"label": "Information Block",
+				"layout_wpk_lead": {
+					"key": "layout_wpk_lead",
+					"name": "lead_capture_block",
+					"label": "Lead Capture Block",
 					"display": "block",
 					"sub_fields": [
 						{
-							"key": "field_plwp_1050",
-							"label": "Header",
-							"name": "header",
+							"key": "field_wpk_lead_intro",
+							"label": "Intro",
+							"name": "intro",
+							"aria-label": "",
+							"type": "wysiwyg",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"allow_in_bindings": 1,
+							"tabs": "all",
+							"toolbar": "full",
+							"media_upload": 0,
+							"delay": 0
+						},
+						{
+							"key": "field_wpk_lead_shot",
+							"label": "Screenshot",
+							"name": "screenshot",
+							"aria-label": "",
+							"type": "image",
+							"instructions": "Use a clear, high-quality image. Avoid tiny or blurry images.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "40",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "",
+							"mime_types": "jpg,jpeg,png,webp,gif,svg",
+							"allow_in_bindings": 1,
+							"preview_size": "medium"
+						},
+						{
+							"key": "field_wpk_lead_content",
+							"label": "Content",
+							"name": "content",
+							"aria-label": "",
+							"type": "wysiwyg",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "60",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"allow_in_bindings": 1,
+							"tabs": "all",
+							"toolbar": "full",
+							"media_upload": 0,
+							"delay": 0
+						},
+						{
+							"key": "field_wpk_lead_link",
+							"label": "Button",
+							"name": "link",
+							"aria-label": "",
+							"type": "link",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array"
+						}
+					],
+					"min": "",
+					"max": ""
+				},
+				"layout_wpk_selection": {
+					"key": "layout_wpk_selection",
+					"name": "selection_block",
+					"label": "Selection Block",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_wpk_sel_intro",
+							"label": "Intro",
+							"name": "intro",
+							"aria-label": "",
+							"type": "wysiwyg",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"allow_in_bindings": 1,
+							"tabs": "all",
+							"toolbar": "full",
+							"media_upload": 0,
+							"delay": 0
+						},
+						{
+							"key": "field_wpk_sel_services",
+							"label": "Services",
+							"name": "services",
+							"aria-label": "",
+							"type": "repeater",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"layout": "block",
+							"pagination": 0,
+							"min": 0,
+							"max": 0,
+							"collapsed": "field_wpk_sel_label",
+							"button_label": "Add Service",
+							"rows_per_page": 20,
+							"sub_fields": [
+								{
+									"key": "field_wpk_sel_icon",
+									"label": "Icon",
+									"name": "icon",
+									"aria-label": "",
+									"type": "font-awesome",
+									"instructions": "Pick from the Solid set for a consistent look.",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "20",
+										"class": "",
+										"id": ""
+									},
+									"icon_sets": ["solid"],
+									"custom_icon_set": "",
+									"fa_live_preview": "",
+									"default_label": "",
+									"default_value": "",
+									"save_format": "element",
+									"allow_null": 1,
+									"show_preview": 1,
+									"enqueue_fa": 0,
+									"allow_in_bindings": 0,
+									"parent_repeater": "field_wpk_sel_services",
+									"choices": []
+								},
+								{
+									"key": "field_wpk_sel_label",
+									"label": "Label",
+									"name": "label",
+									"aria-label": "",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "30",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"maxlength": "",
+									"allow_in_bindings": 1,
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_sel_services"
+								},
+								{
+									"key": "field_wpk_sel_detail",
+									"label": "Detail Content",
+									"name": "detail_content",
+									"aria-label": "",
+									"type": "wysiwyg",
+									"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "50",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"allow_in_bindings": 1,
+									"tabs": "all",
+									"toolbar": "full",
+									"media_upload": 0,
+									"delay": 0,
+									"parent_repeater": "field_wpk_sel_services"
+								}
+							]
+						}
+					],
+					"min": "",
+					"max": ""
+				},
+				"layout_wpk_pricing": {
+					"key": "layout_wpk_pricing",
+					"name": "pricing_block",
+					"label": "Pricing Block",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_wpk_price_intro",
+							"label": "Intro",
+							"name": "intro",
+							"aria-label": "",
+							"type": "wysiwyg",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"allow_in_bindings": 1,
+							"tabs": "all",
+							"toolbar": "full",
+							"media_upload": 0,
+							"delay": 0
+						},
+						{
+							"key": "field_wpk_price_incl_label",
+							"label": "Includes Label",
+							"name": "includes_label",
 							"aria-label": "",
 							"type": "text",
 							"instructions": "",
@@ -1000,12 +1317,245 @@
 							"append": ""
 						},
 						{
-							"key": "field_plwp_1051",
-							"label": "Main Content",
-							"name": "content",
+							"key": "field_wpk_price_includes",
+							"label": "Includes",
+							"name": "includes",
+							"aria-label": "",
+							"type": "repeater",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"layout": "table",
+							"pagination": 0,
+							"min": 0,
+							"max": 0,
+							"collapsed": "field_wpk_price_incl_item",
+							"button_label": "Add Include",
+							"rows_per_page": 20,
+							"sub_fields": [
+								{
+									"key": "field_wpk_price_incl_item",
+									"label": "Include Label",
+									"name": "include_label",
+									"aria-label": "",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"maxlength": "",
+									"allow_in_bindings": 1,
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_price_includes"
+								}
+							]
+						},
+						{
+							"key": "field_wpk_price_plans",
+							"label": "Plans",
+							"name": "plans",
+							"aria-label": "",
+							"type": "repeater",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"layout": "block",
+							"pagination": 0,
+							"min": 0,
+							"max": 0,
+							"collapsed": "field_wpk_plan_title",
+							"button_label": "Add Plan",
+							"rows_per_page": 20,
+							"sub_fields": [
+								{
+									"key": "field_wpk_plan_price",
+									"label": "Price",
+									"name": "price",
+									"aria-label": "",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "20",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"maxlength": "",
+									"allow_in_bindings": 1,
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_price_plans"
+								},
+								{
+									"key": "field_wpk_plan_suffix",
+									"label": "Price Suffix",
+									"name": "price_suffix",
+									"aria-label": "",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "15",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "\/mo",
+									"maxlength": "",
+									"allow_in_bindings": 1,
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_price_plans"
+								},
+								{
+									"key": "field_wpk_plan_title",
+									"label": "Plan Title",
+									"name": "plan_title",
+									"aria-label": "",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "30",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"maxlength": "",
+									"allow_in_bindings": 1,
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_price_plans"
+								},
+								{
+									"key": "field_wpk_plan_tokens",
+									"label": "Tokens Line",
+									"name": "tokens_line",
+									"aria-label": "",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "35",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"maxlength": "",
+									"allow_in_bindings": 1,
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_price_plans"
+								},
+								{
+									"key": "field_wpk_plan_best_label",
+									"label": "Best For Label",
+									"name": "best_for_label",
+									"aria-label": "",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "30",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "Best for",
+									"maxlength": "",
+									"allow_in_bindings": 1,
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_price_plans"
+								},
+								{
+									"key": "field_wpk_plan_best",
+									"label": "Best For",
+									"name": "best_for",
+									"aria-label": "",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "70",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"maxlength": "",
+									"allow_in_bindings": 1,
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_price_plans"
+								}
+							]
+						},
+						{
+							"key": "field_wpk_price_footer",
+							"label": "Footer",
+							"name": "footer",
 							"aria-label": "",
 							"type": "wysiwyg",
-							"instructions": "You can add additional headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"allow_in_bindings": 1,
+							"tabs": "all",
+							"toolbar": "full",
+							"media_upload": 0,
+							"delay": 0
+						}
+					],
+					"min": "",
+					"max": ""
+				},
+				"layout_wpk_dyn_price": {
+					"key": "layout_wpk_dyn_price",
+					"name": "dynamic_pricing_block",
+					"label": "Dynamic Pricing Block",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_wpk_dyn_intro",
+							"label": "Intro",
+							"name": "intro",
+							"aria-label": "",
+							"type": "wysiwyg",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
@@ -1021,7 +1571,510 @@
 							"delay": 0
 						},
 						{
-							"key": "field_plwp_1052",
+							"key": "field_wpk_dyn_options",
+							"label": "Payment Options",
+							"name": "payment_options",
+							"aria-label": "",
+							"type": "repeater",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"layout": "block",
+							"pagination": 0,
+							"min": 0,
+							"max": 0,
+							"collapsed": "field_wpk_dyn_opt_title",
+							"button_label": "Add Payment Option",
+							"rows_per_page": 20,
+							"sub_fields": [
+								{
+									"key": "field_wpk_dyn_opt_title",
+									"label": "Option Title",
+									"name": "option_title",
+									"aria-label": "",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "35",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"maxlength": "",
+									"allow_in_bindings": 1,
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_dyn_options"
+								},
+								{
+									"key": "field_wpk_dyn_opt_text",
+									"label": "Option Text",
+									"name": "option_text",
+									"aria-label": "",
+									"type": "wysiwyg",
+									"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "65",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"allow_in_bindings": 1,
+									"tabs": "all",
+									"toolbar": "full",
+									"media_upload": 0,
+									"delay": 0,
+									"parent_repeater": "field_wpk_dyn_options"
+								}
+							]
+						},
+						{
+							"key": "field_wpk_dyn_calc_title",
+							"label": "Calculator Title",
+							"name": "calculator_title",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "Pricing Calculator",
+							"maxlength": "",
+							"allow_in_bindings": 1,
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_dyn_base",
+							"label": "Base Site Price",
+							"name": "base_site",
+							"aria-label": "",
+							"type": "number",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "33",
+								"class": "",
+								"id": ""
+							},
+							"default_value": 900,
+							"min": "",
+							"max": "",
+							"placeholder": "",
+							"step": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_dyn_monthly",
+							"label": "Monthly Service",
+							"name": "monthly_service",
+							"aria-label": "",
+							"type": "number",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "33",
+								"class": "",
+								"id": ""
+							},
+							"default_value": 69,
+							"min": "",
+							"max": "",
+							"placeholder": "",
+							"step": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_dyn_term",
+							"label": "Term Months",
+							"name": "term_months",
+							"aria-label": "",
+							"type": "number",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "33",
+								"class": "",
+								"id": ""
+							},
+							"default_value": 12,
+							"min": "",
+							"max": "",
+							"placeholder": "",
+							"step": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_dyn_crm",
+							"label": "VacationCRM Addon",
+							"name": "addon_vacation_crm",
+							"aria-label": "",
+							"type": "number",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "33",
+								"class": "",
+								"id": ""
+							},
+							"default_value": 250,
+							"min": "",
+							"max": "",
+							"placeholder": "",
+							"step": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_dyn_copy",
+							"label": "White Glove Copy Addon",
+							"name": "addon_white_glove_copy",
+							"aria-label": "",
+							"type": "number",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "33",
+								"class": "",
+								"id": ""
+							},
+							"default_value": 400,
+							"min": "",
+							"max": "",
+							"placeholder": "",
+							"step": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_dyn_design",
+							"label": "Graphic Design Addon",
+							"name": "addon_graphic_design",
+							"aria-label": "",
+							"type": "number",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "33",
+								"class": "",
+								"id": ""
+							},
+							"default_value": 400,
+							"min": "",
+							"max": "",
+							"placeholder": "",
+							"step": "",
+							"prepend": "",
+							"append": ""
+						}
+					],
+					"min": "",
+					"max": ""
+				},
+				"layout_wpk_case": {
+					"key": "layout_wpk_case",
+					"name": "case_study_block",
+					"label": "Case Study Block",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_wpk_case_shot",
+							"label": "Screenshot",
+							"name": "screenshot",
+							"aria-label": "",
+							"type": "image",
+							"instructions": "Use a clear, high-quality image. Avoid tiny or blurry images.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_width": "",
+							"min_height": "",
+							"min_size": "",
+							"max_width": "",
+							"max_height": "",
+							"max_size": "",
+							"mime_types": "jpg,jpeg,png,webp,gif,svg",
+							"allow_in_bindings": 1,
+							"preview_size": "medium"
+						},
+						{
+							"key": "field_wpk_case_eyebrow",
+							"label": "Eyebrow",
+							"name": "eyebrow",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "30",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"allow_in_bindings": 1,
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_case_title",
+							"label": "Title",
+							"name": "title",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "40",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"allow_in_bindings": 1,
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_case_subtitle",
+							"label": "Subtitle",
+							"name": "subtitle",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "30",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"allow_in_bindings": 1,
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_case_intro",
+							"label": "Intro",
+							"name": "intro",
+							"aria-label": "",
+							"type": "wysiwyg",
+							"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"allow_in_bindings": 1,
+							"tabs": "all",
+							"toolbar": "full",
+							"media_upload": 0,
+							"delay": 0
+						},
+						{
+							"key": "field_wpk_case_sections",
+							"label": "Sections",
+							"name": "sections",
+							"aria-label": "",
+							"type": "repeater",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"layout": "block",
+							"pagination": 0,
+							"min": 0,
+							"max": 0,
+							"collapsed": "field_wpk_case_sec_title",
+							"button_label": "Add Section",
+							"rows_per_page": 20,
+							"sub_fields": [
+								{
+									"key": "field_wpk_case_sec_title",
+									"label": "Section Title",
+									"name": "section_title",
+									"aria-label": "",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "35",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"maxlength": "",
+									"allow_in_bindings": 1,
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_case_sections"
+								},
+								{
+									"key": "field_wpk_case_sec_text",
+									"label": "Section Text",
+									"name": "section_text",
+									"aria-label": "",
+									"type": "wysiwyg",
+									"instructions": "You can add headers, text and buttons using the tools below. For SEO reasons, do not use an H1.",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "65",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"allow_in_bindings": 1,
+									"tabs": "all",
+									"toolbar": "full",
+									"media_upload": 0,
+									"delay": 0,
+									"parent_repeater": "field_wpk_case_sections"
+								}
+							]
+						},
+						{
+							"key": "field_wpk_case_work_heading",
+							"label": "Work Heading",
+							"name": "work_heading",
+							"aria-label": "",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"maxlength": "",
+							"allow_in_bindings": 1,
+							"placeholder": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
+							"key": "field_wpk_case_work",
+							"label": "Work Items",
+							"name": "work_items",
+							"aria-label": "",
+							"type": "repeater",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"layout": "table",
+							"pagination": 0,
+							"min": 0,
+							"max": 0,
+							"collapsed": "field_wpk_case_work_label",
+							"button_label": "Add Work Item",
+							"rows_per_page": 20,
+							"sub_fields": [
+								{
+									"key": "field_wpk_case_work_icon",
+									"label": "Icon",
+									"name": "icon",
+									"aria-label": "",
+									"type": "font-awesome",
+									"instructions": "Pick from the Solid set for a consistent look.",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "25",
+										"class": "",
+										"id": ""
+									},
+									"icon_sets": ["solid"],
+									"custom_icon_set": "",
+									"fa_live_preview": "",
+									"default_label": "",
+									"default_value": "",
+									"save_format": "element",
+									"allow_null": 1,
+									"show_preview": 1,
+									"enqueue_fa": 0,
+									"allow_in_bindings": 0,
+									"parent_repeater": "field_wpk_case_work",
+									"choices": []
+								},
+								{
+									"key": "field_wpk_case_work_label",
+									"label": "Item Label",
+									"name": "item_label",
+									"aria-label": "",
+									"type": "text",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "75",
+										"class": "",
+										"id": ""
+									},
+									"default_value": "",
+									"maxlength": "",
+									"allow_in_bindings": 1,
+									"placeholder": "",
+									"prepend": "",
+									"append": "",
+									"parent_repeater": "field_wpk_case_work"
+								}
+							]
+						},
+						{
+							"key": "field_wpk_case_link",
 							"label": "Button (Optional)",
 							"name": "link",
 							"aria-label": "",
@@ -1035,71 +2088,6 @@
 								"id": ""
 							},
 							"return_format": "array"
-						},
-						{
-							"key": "field_plwp_1055",
-							"label": "Supporting Items",
-							"name": "items",
-							"aria-label": "",
-							"type": "repeater",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"min": 0,
-							"max": 0,
-							"layout": "table",
-							"button_label": "Add Item",
-							"collapsed": "field_plwp_1053",
-							"rows_per_page": 20,
-							"sub_fields": [
-								{
-									"key": "field_plwp_1053",
-									"label": "Item Title",
-									"name": "item_title",
-									"aria-label": "",
-									"type": "text",
-									"instructions": "",
-									"required": 0,
-									"conditional_logic": 0,
-									"wrapper": {
-										"width": "35",
-										"class": "",
-										"id": ""
-									},
-									"default_value": "",
-									"maxlength": "",
-									"placeholder": "",
-									"prepend": "",
-									"append": "",
-									"parent_repeater": "field_plwp_1055"
-								},
-								{
-									"key": "field_plwp_1054",
-									"label": "Item Text",
-									"name": "item_text",
-									"aria-label": "",
-									"type": "textarea",
-									"instructions": "",
-									"required": 0,
-									"conditional_logic": 0,
-									"wrapper": {
-										"width": "65",
-										"class": "",
-										"id": ""
-									},
-									"default_value": "",
-									"maxlength": "",
-									"placeholder": "",
-									"rows": 3,
-									"new_lines": "",
-									"parent_repeater": "field_plwp_1055"
-								}
-							]
 						}
 					],
 					"min": "",
@@ -1146,5 +2134,5 @@
 	"display_title": "",
 	"allow_ai_access": false,
 	"ai_description": "",
-	"modified": 1788145400
+	"modified": 1791438765
 }
