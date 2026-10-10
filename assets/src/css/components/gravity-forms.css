@@ -35,7 +35,8 @@
 	textarea,
 	select
 ) {
-	background-color: var(--color-soft-1);
+	background-color: var(--color-white);
+	background-image: none;
 	color: var(--color-black);
 
 	border: 1px solid color-mix(in srgb, var(--color-black) 18%, transparent);
@@ -81,6 +82,87 @@
 }
 
 /* ---------------------------------------------------------
+   Radio choices: compact chips, selected state in primary
+   --------------------------------------------------------- */
+
+.gform_wrapper.gravity-theme .gfield_radio {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 0.5rem;
+}
+
+.gform_wrapper.gravity-theme .gfield_radio .gchoice {
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex: 0 0 auto;
+	gap: 0.5rem;
+
+	width: auto;
+	max-width: 100%;
+	margin: 0;
+	padding: 0.45rem 0.8rem;
+
+	background-color: color-mix(in srgb, var(--color-black) 4%, var(--color-white));
+	border: 1px solid color-mix(in srgb, var(--color-black) 10%, transparent);
+	border-radius: 999px;
+
+	cursor: pointer;
+}
+
+.gform_wrapper.gravity-theme .gfield_radio .gchoice:has(input:checked) {
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+	color: var(--color-black);
+}
+
+.gform_wrapper.gravity-theme .gfield_radio .gchoice:has(input:focus-visible) {
+	outline: 2px solid var(--color-black);
+	outline-offset: 2px;
+}
+
+.gform_wrapper.gravity-theme .gfield_radio .gchoice input {
+	position: relative;
+	appearance: none;
+
+	flex: 0 0 auto;
+	width: 1.15rem;
+	height: 1.15rem;
+	margin: 0;
+
+	border: 2px solid color-mix(in srgb, var(--color-black) 35%, transparent);
+	border-radius: 999px;
+	background-color: transparent;
+	background-image: none;
+	box-shadow: none;
+}
+
+.gform_wrapper.gravity-theme .gfield_radio .gchoice input:checked {
+	border-color: var(--color-black);
+	background-image: radial-gradient(circle, var(--color-black) 0 42%, transparent 46%);
+}
+
+.gform_wrapper.gravity-theme .gfield_radio .gchoice label {
+	margin: 0;
+	cursor: pointer;
+	font-weight: 600;
+	line-height: 1.3;
+	white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+	.gform_wrapper.gravity-theme .gfield_radio .gchoice label {
+		white-space: normal;
+	}
+}
+
+.gform_wrapper.gravity-theme .gfield_radio .gchoice label:before {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+/* ---------------------------------------------------------
    Minor GF-specific tweaks
    --------------------------------------------------------- */
 
@@ -100,14 +182,25 @@
 	margin-top: 0 !important;
 }
 
-/* Required asterisk uses theme accent */
+/* Required mark stays quiet; the legend explains it */
 .gform_wrapper.gravity-theme .gfield_required {
-	color: red !important;
+	color: color-mix(in srgb, var(--color-black) 55%, transparent) !important;
+	font-weight: 600;
 }
 
 /* ---------------------------------------------------------
    Submit button (match btn_main)
    --------------------------------------------------------- */
+
+/*
+ * Gravity Forms sets inputs, selects, and textareas to 15px.
+ * iOS zooms the page when a focused field is under 16px.
+ */
+.gform_wrapper.gravity-theme .ginput_container input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not([type="hidden"]):not([type="submit"]):not([type="button"]),
+.gform_wrapper.gravity-theme .ginput_container select,
+.gform_wrapper.gravity-theme .ginput_container textarea {
+	font-size: 1rem;
+}
 
 .gform_wrapper.gravity-theme .gform_footer .gform_button,
 .gform_wrapper.gravity-theme .gform_page_footer .gform_button {
@@ -139,6 +232,137 @@
 .gform_wrapper.gravity-theme .gform_page_footer .gform_button:focus-visible {
 	outline: 2px solid var(--color-black);
 	outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------
+   Advisor inquiry: one quiet surface, three sections
+   --------------------------------------------------------- */
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper {
+	background-color: var(--color-white);
+	border-radius: 1rem;
+	padding: 1.5rem 1.15rem 1.25rem;
+	box-shadow: 0 14px 36px color-mix(in srgb, var(--color-black) 12%, transparent);
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gform_required_legend {
+	margin: 0 0 1.5rem;
+	color: color-mix(in srgb, var(--color-black) 70%, transparent);
+	font-size: 0.875rem;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gform_fields {
+	row-gap: 1.35rem;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield {
+	margin-bottom: 0 !important;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield.gf-section {
+	margin-top: 2.75rem !important;
+	padding-top: 0.25rem;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield.gf-section:first-child {
+	margin-top: 0 !important;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gsection {
+	border-bottom: 0;
+	padding: 0;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gsection_title {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: clamp(1.75rem, 3vw, 2.25rem);
+	font-weight: 400;
+	line-height: 1.15;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield_description {
+	color: color-mix(in srgb, var(--color-black) 72%, transparent);
+	font-size: 0.925rem;
+	line-height: 1.45;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield.gf-addon {
+	align-self: stretch;
+	background-color: var(--color-soft-1);
+	background-image: var(--background-image-primary-gradient);
+	border-radius: 0.85rem;
+	padding: 1.15rem 1rem 1.1rem;
+	box-shadow: 0 8px 18px color-mix(in srgb, var(--color-black) 8%, transparent);
+}
+
+/* Legends sit on the fieldset border. Float them so the title stays inside the card. */
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield.gf-addon > .gfield_label {
+	float: left;
+	width: 100%;
+	margin: 0 0 0.45rem;
+	padding: 0;
+	font-size: 1.05rem;
+}
+
+/* Choices outside the add-on cards share one full-width row. */
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield:not(.gf-addon) .gfield_radio {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 1fr;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield:not(.gf-addon) .gchoice {
+	width: 100%;
+	min-width: 0;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield:not(.gf-addon) .gchoice label {
+	white-space: normal;
+}
+
+@media (max-width: 640px) {
+	.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield:not(.gf-addon) .gfield_radio {
+		grid-auto-flow: row;
+		grid-template-columns: 1fr;
+	}
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield.gf-addon .gfield_radio {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield.gf-addon .gchoice {
+	width: 100%;
+	border-radius: 0.65rem;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield.gf-addon .gfield_description {
+	clear: both;
+	margin-top: 0.15rem !important;
+	padding-top: 0 !important;
+	padding-bottom: 0.65rem !important;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gfield.gf-notes textarea {
+	height: auto;
+	field-sizing: content;
+	min-height: 6.5rem;
+	max-height: 14rem;
+	resize: vertical;
+}
+
+.gform_wrapper.gravity-theme.gf-inquiry_wrapper .gform_footer {
+	margin-top: 1.25rem;
+	padding: 0;
+}
+
+@media (min-width: 768px) {
+	.gform_wrapper.gravity-theme.gf-inquiry_wrapper {
+		padding: 2.25rem 2rem 1.75rem;
+	}
 }
 
 /* ---------------------------------------------------------
