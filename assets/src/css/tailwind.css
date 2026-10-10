@@ -185,11 +185,13 @@
 	.prose-theme {
 		@apply prose max-w-none;
 		color: var(--color-black);
+		/* Long URLs in editor content must wrap instead of widening the page. */
+		overflow-wrap: break-word;
 
 		/* Map typography plugin colors to theme tokens */
 		--tw-prose-body: var(--color-black);
 		--tw-prose-headings: var(--color-black);
-		--tw-prose-links: var(--color-primary);
+		--tw-prose-links: var(--color-secondary);
 		--tw-prose-bold: var(--color-black);
 		--tw-prose-counters: var(--color-black);
 		--tw-prose-bullets: var(--color-black);
@@ -213,7 +215,7 @@
 
 	/* Baseline heading rhythm inside WYSIWYG content */
 	.prose-theme :where(h1, h2):not(:where(.not-prose, .not-prose *)) {
-		margin-bottom: 0.7em;
+		margin-bottom: 0.3em;
 	}
 
 	.prose-theme :where(h1 + p, h2 + p):not(:where(.not-prose, .not-prose *)) {
@@ -297,23 +299,25 @@
    - `.prose-theme` maps WYSIWYG headings to these same
      baseline styles so editor content matches template content.
 
-   Figma → rem (@ 16px root; body stays default):
-   - heading-xl: fluid XL display for brand heroes (no uppercase)
-   - heading-1: 80px → 5rem, lh 89px → 1.1125, uppercase
-   - heading-2: 40px → 2.5rem, lh 41px → 1.025
-   - heading-3: 40px → 2.5rem, bold, uppercase
+   Windpeak scale (display = DM Serif; body = Inter):
+   - heading-xl: fluid XL brand heroes (video/photo headers)
+   - heading-1: largest uppercase display (IMAGINE / BIG SITE)
+   - heading-2: primary uppercase section titles (PROJECTS,
+     SERVICES, START THE PROCESS, CHAT / CREATE, WYSIWYG H2)
+   - heading-3: display subsections — title-case friendly
+     (case-study sections, pricing card titles); no forced
+     uppercase so CMS copy controls casing
+   - heading-4: small bold body subsections
+
+   Cascade note:
+   - Prose mappings use element selectors (`.prose-theme h2`)
+     so they beat `@apply prose`’s `:where(h2)` rules
+     (`font-size: 1.5em`). Without that, WYSIWYG titles shrink.
 
    Use:
-   - heading-xl: homepage / brand-forward video header titles
-   - heading-1: major page/hero headings
-   - heading-2: section headings
-   - heading-3: card/repeater/subsection headings
-   - heading-4: small subsection headings
-
-   Notes:
+   - Prefer `.heading-*` over one-off `text-*xl` / `font-display`
+     stacks in templates so type stays editable in one place.
    - Do not `@apply heading-1` inside another selector.
-     Tailwind may treat custom component classes as unknown.
-   - Group the reusable class and prose selector together instead.
    ========================================================= */
 
 @layer components {
@@ -327,37 +331,70 @@
 		letter-spacing: -0.02em;
 	}
 
-	.heading-1,
-	.prose-theme :where(h1):not(:where(.not-prose, .not-prose *)) {
+	.heading-1 {
 		font-family: var(--font-display);
-		font-size: 5rem; /* 80px */
+		font-size: clamp(3.25rem, 8vw, 5.5rem); /* ~52–88px */
 		font-style: normal;
 		font-weight: 400;
-		line-height: 1.1125; /* 89px */
+		line-height: 1.02;
 		text-transform: uppercase;
 	}
 
-	.heading-2,
-	.prose-theme :where(h2):not(:where(.not-prose, .not-prose *)) {
+	.heading-2 {
 		font-family: var(--font-display);
-		font-size: 2.5rem; /* 40px */
+		font-size: clamp(2.75rem, 6.5vw, 4.5rem); /* ~44–72px */
 		font-style: normal;
 		font-weight: 400;
-		line-height: 1.025; /* 41px */
+		line-height: 1.05;
+		text-transform: uppercase;
 	}
 
-	.heading-3,
-	.prose-theme :where(h3):not(:where(.not-prose, .not-prose *)) {
+	.heading-3 {
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 3.5vw, 2.5rem); /* ~28–40px */
+		font-style: normal;
+		font-weight: 400;
+		line-height: 1.15;
+	}
+
+	.heading-4 {
 		font-family: var(--font-body);
-		font-size: 2.5rem; /* 40px */
+		@apply text-lg leading-snug font-bold md:text-xl;
+	}
+
+	/*
+	  WYSIWYG → same visual scale as `.heading-*`.
+	  Higher specificity than `.prose-theme :where(h*)` from
+	  `@apply prose`, so display sizes/weight/case actually stick.
+	*/
+	.prose-theme h1:not(:where(.not-prose, .not-prose *)) {
+		font-family: var(--font-display);
+		font-size: clamp(3.25rem, 8vw, 5.5rem);
 		font-style: normal;
-		font-weight: 700;
-		line-height: normal;
+		font-weight: 400;
+		line-height: 1.02;
 		text-transform: uppercase;
 	}
 
-	.heading-4,
-	.prose-theme :where(h4):not(:where(.not-prose, .not-prose *)) {
+	.prose-theme h2:not(:where(.not-prose, .not-prose *)) {
+		font-family: var(--font-display);
+		font-size: clamp(2.75rem, 6.5vw, 4.5rem);
+		font-style: normal;
+		font-weight: 400;
+		line-height: 1.05;
+		text-transform: uppercase;
+	}
+
+	.prose-theme h3:not(:where(.not-prose, .not-prose *)) {
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+		font-style: normal;
+		font-weight: 400;
+		line-height: 1.15;
+		text-transform: none;
+	}
+
+	.prose-theme h4:not(:where(.not-prose, .not-prose *)) {
 		font-family: var(--font-body);
 		@apply text-lg leading-snug font-bold md:text-xl;
 	}
