@@ -4,7 +4,7 @@
 	 *
 	 * Lightweight footer layout used on sites that do not need the full
 	 * complex footer system. Displays the footer logo, optional link list,
-	 * social icons, and legal text.
+	 * and social icons. Copyright lives in the shared credit bar.
 	 *
 	 * This footer is toggled via the ACF "Globals" options page.
 	 *
@@ -69,15 +69,6 @@
 				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
-
-		<?php
-			$simple_legal = get_field( 'footer_simple_legal_text', 'option' );
-			if ( ! empty( $simple_legal ) ) :
-				?>
-				<div class="s-footer-legal">
-					<?php echo wp_kses_post( $simple_legal ); ?>
-				</div>
-			<?php endif; ?>
 
 	</div>
 </div>
