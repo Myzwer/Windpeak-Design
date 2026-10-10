@@ -74,13 +74,6 @@ body:has(.simple-header) .site-header {
 	width: 100%;
 }
 
-/* Darker ACF topo asset — pull back ~30% from the global .bg-texture opacity (0.25). */
-.video-header.bg-texture:after,
-.photo-header.bg-texture:after,
-.simple-header.bg-texture:after {
-	opacity: 0.175;
-}
-
 .video-header-shell {
 	/* Nav clearance + breathing room around the frame */
 	padding-top: calc(var(--site-header-height) + 0.1rem);
@@ -321,7 +314,7 @@ body:has(.simple-header) .site-header {
 	background-size: auto;
 
 	/* Texture should support readability, not dominate the hero */
-	opacity: 0.25;
+	opacity: 0.2;
 
 	/* Intentional: texture integrates with underlying color/image */
 	mix-blend-mode: normal;

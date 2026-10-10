@@ -14,31 +14,15 @@
 	$heading = get_sub_field( 'title' );
 	$button  = get_sub_field( 'button' );
 
-	$topography = function_exists( 'get_field' ) ? get_field( 'topography', 'option' ) : null;
-	$topo_url   = '';
-
-	if ( is_array( $topography ) && ! empty( $topography['url'] ) ) {
-		$topo_url = (string) $topography['url'];
-	} elseif ( is_numeric( $topography ) ) {
-		$url = wp_get_attachment_image_url( (int) $topography, 'full' );
-		$topo_url = $url ? (string) $url : '';
-	} elseif ( is_string( $topography ) && '' !== $topography ) {
-		$topo_url = $topography;
-	}
-
+	$topo_urls       = prelaunch_topography_urls();
 	$section_classes = 'simple-header section bg-primary-gradient';
 
-	if ( $topo_url ) {
+	if ( '' !== $topo_urls['brand'] || '' !== $topo_urls['season'] ) {
 		$section_classes .= ' bg-texture';
 	}
 ?>
 
-<section
-	class="<?php echo esc_attr( $section_classes ); ?>"
-	<?php if ( $topo_url ) : ?>
-		style="--bg-texture: url('<?php echo esc_url( $topo_url ); ?>');"
-	<?php endif; ?>
->
+<section class="<?php echo esc_attr( $section_classes ); ?>">
 	<div class="simple-header-shell">
 		<div class="wrap-wide grid-12 !px-8 lg:!px-12">
 			<div class="grid col-span-12 justify-items-start text-left">

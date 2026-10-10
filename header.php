@@ -36,6 +36,10 @@
 			}
 
 			if (!palette || palette === "windpeak") {
+				if (palette === "windpeak") {
+					document.cookie = "prelaunch-palette=windpeak; Path=/; SameSite=Lax";
+				}
+
 				return;
 			}
 
@@ -43,9 +47,11 @@
 
 			if (palette === "spring" || palette === "summer" || palette === "autumn" || palette === "winter") {
 				document.documentElement.setAttribute("data-palette", palette);
+				document.cookie = "prelaunch-palette=" + palette + "; Path=/; SameSite=Lax";
 			}
 		})();
 	</script>
+	<?php prelaunch_topography_css_vars(); ?>
 
 	<?php
     /**

@@ -24,43 +24,58 @@
  */
 
 @layer theme {
+	/*
+	 * Branded topo on Windpeak. Black topo on any season.
+	 * URLs are printed from Globals in header.php.
+	 */
+	:root {
+		--bg-texture: var(--topo-brand, none);
+	}
+
+	:root[data-palette="spring"],
+	:root[data-palette="summer"],
+	:root[data-palette="autumn"],
+	:root[data-palette="winter"] {
+		--bg-texture: var(--topo-season, var(--topo-brand, none));
+	}
+
 	:root[data-palette="spring"] {
-		--color-primary: #73CFAE;
-		--color-secondary: #3F8058;
-		--color-soft-1: #E8F5E9;
-		--color-soft-2: #F3E8F4;
-		--color-primary-gradient-to: #CFF3E4;
-		--color-secondary-gradient-to: #D4F5DE;
-		--color-impact-gradient-to: #2E6242;
+		--color-primary: #B8A7DE;
+		--color-secondary: #4F6F3A;
+		--color-soft-1: #D1DD93;
+		--color-soft-2: #F0EDAA;
+		--color-primary-gradient-to: #BDD274;
+		--color-secondary-gradient-to: #E3DC86;
+		--color-impact-gradient-to: #3E552E;
 	}
 
 	:root[data-palette="summer"] {
-		--color-primary: #4FB7C5;
-		--color-secondary: #2F6F4E;
-		--color-soft-1: #E3F5F4;
-		--color-soft-2: #FFF1D6;
-		--color-primary-gradient-to: #C7EDF1;
-		--color-secondary-gradient-to: #C9EEDD;
-		--color-impact-gradient-to: #23543A;
+		--color-primary: #F49B83;
+		--color-secondary: #2F6F73;
+		--color-soft-1: #F7D897;
+		--color-soft-2: #77B8B2;
+		--color-primary-gradient-to: #F4B56F;
+		--color-secondary-gradient-to: #9ED5CF;
+		--color-impact-gradient-to: #214F56;
 	}
 
 	:root[data-palette="autumn"] {
-		--color-primary: #D99A5E;
-		--color-secondary: #632D29;
-		--color-soft-1: #F7E8D5;
-		--color-soft-2: #F4E4DF;
-		--color-primary-gradient-to: #F5DEC7;
-		--color-secondary-gradient-to: #F1D7D2;
-		--color-impact-gradient-to: #47201D;
+		--color-primary: #E57E58;
+		--color-secondary: #6A3C2C;
+		--color-soft-1: #F6DFBF;
+		--color-soft-2: #F4D6CB;
+		--color-primary-gradient-to: #E8A34E;
+		--color-secondary-gradient-to: #E8A887;
+		--color-impact-gradient-to: #4A251E;
 	}
 
 	:root[data-palette="winter"] {
-		--color-primary: #78B7D4;
-		--color-secondary: #315B70;
-		--color-soft-1: #E3F1F7;
-		--color-soft-2: #E9EEF7;
-		--color-primary-gradient-to: #D4EAF4;
-		--color-secondary-gradient-to: #D2E3EC;
-		--color-impact-gradient-to: #243F4D;
+		--color-primary: #7188C8;
+		--color-secondary: #465674;
+		--color-soft-1: #B6C7F4;
+		--color-soft-2: #CFEEFD;
+		--color-primary-gradient-to: #9FB2E8;
+		--color-secondary-gradient-to: #B8E1F5;
+		--color-impact-gradient-to: #30384F;
 	}
 }

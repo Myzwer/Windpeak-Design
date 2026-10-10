@@ -548,6 +548,8 @@
    - Background-eligible blocks are wrapped in `.bg-alternating-gradient`
    - page.php assigns either `.bg-alternating-odd` or `.bg-alternating-even`
    - CSS maps those odd/even classes to theme gradient tokens
+   - Sequence starts with soft green so it contrasts the primary-blue headers
+   - Blue (even) stripes also get the global topography texture via `.bg-texture`
 
    Why this exists:
    - Keeps background color logic centralized
@@ -570,11 +572,11 @@
 
 @layer components {
 	.alt-bg-wrap > .bg-alternating-gradient.bg-alternating-odd {
-		background-image: var(--background-image-primary-gradient);
+		background-image: var(--background-image-secondary-gradient);
 	}
 
 	.alt-bg-wrap > .bg-alternating-gradient.bg-alternating-even {
-		background-image: var(--background-image-secondary-gradient);
+		background-image: var(--background-image-primary-gradient);
 	}
 }
 

@@ -16,7 +16,7 @@
 				"class": "",
 				"id": ""
 			},
-			"placement": "left",
+			"placement": "right",
 			"endpoint": 0,
 			"selected": 0
 		},
@@ -593,6 +593,126 @@
 			"mime_types": "",
 			"allow_in_bindings": 0,
 			"preview_size": "medium"
+		},
+		{
+			"key": "field_windpeak_seasonal_tab_notice",
+			"label": "Notice",
+			"name": "",
+			"aria-label": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "right",
+			"endpoint": 0,
+			"selected": 0
+		},
+		{
+			"key": "field_windpeak_seasonal_notice_note",
+			"label": "Season notice",
+			"name": "",
+			"aria-label": "",
+			"type": "message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "Shown for a moment when that season is selected. Icons match the season button: flower, sun, leaf, snowflake.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_windpeak_seasonal_notice_spring",
+			"label": "Spring",
+			"name": "seasonal_notice_spring",
+			"aria-label": "",
+			"type": "text",
+			"instructions": "Icon: flower.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Spring has sprung!",
+			"maxlength": "",
+			"allow_in_bindings": 0,
+			"placeholder": "",
+			"prepend": "",
+			"append": ""
+		},
+		{
+			"key": "field_windpeak_seasonal_notice_summer",
+			"label": "Summer",
+			"name": "seasonal_notice_summer",
+			"aria-label": "",
+			"type": "text",
+			"instructions": "Icon: sun.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Step into Summer!",
+			"maxlength": "",
+			"allow_in_bindings": 0,
+			"placeholder": "",
+			"prepend": "",
+			"append": ""
+		},
+		{
+			"key": "field_windpeak_seasonal_notice_autumn",
+			"label": "Fall",
+			"name": "seasonal_notice_autumn",
+			"aria-label": "",
+			"type": "text",
+			"instructions": "Icon: leaf.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Its Fall ya'll!",
+			"maxlength": "",
+			"allow_in_bindings": 0,
+			"placeholder": "",
+			"prepend": "",
+			"append": ""
+		},
+		{
+			"key": "field_windpeak_seasonal_notice_winter",
+			"label": "Winter",
+			"name": "seasonal_notice_winter",
+			"aria-label": "",
+			"type": "text",
+			"instructions": "Icon: snowflake.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "It's a winter wonderland!",
+			"maxlength": "",
+			"allow_in_bindings": 0,
+			"placeholder": "",
+			"prepend": "",
+			"append": ""
 		}
 	],
 	"location": [
@@ -616,5 +736,5 @@
 	"display_title": "",
 	"allow_ai_access": false,
 	"ai_description": "",
-	"modified": 1791255297
+	"modified": 1791440071
 }

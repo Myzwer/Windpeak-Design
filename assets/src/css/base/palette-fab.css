@@ -4,7 +4,7 @@
  * Palette FAB
  * Fixed bottom-right control. Markup: template-parts/palette-fab.php
  *
- * Season fills are each palette's sky color.
+ * Season fills are each palette's sky color so the black icons stay readable.
  */
 
 @layer components {
@@ -111,22 +111,22 @@
 
 	.palette-fab-season[data-palette="winter"],
 	.palette-fab-stack[data-active="winter"] .palette-fab {
-		background-color: #78B7D4;
+		background-color: #AAB5EE;
 	}
 
 	.palette-fab-season[data-palette="spring"],
 	.palette-fab-stack[data-active="spring"] .palette-fab {
-		background-color: #73CFAE;
+		background-color: #EBC7D6;
 	}
 
 	.palette-fab-season[data-palette="summer"],
 	.palette-fab-stack[data-active="summer"] .palette-fab {
-		background-color: #4FB7C5;
+		background-color: #E8B86C;
 	}
 
 	.palette-fab-season[data-palette="autumn"],
 	.palette-fab-stack[data-active="autumn"] .palette-fab {
-		background-color: #D99A5E;
+		background-color: #E57E58;
 	}
 
 	.palette-fab-stack[data-menu="windpeak"] .palette-fab-seasons [data-palette="windpeak"],
@@ -171,5 +171,85 @@
 	.palette-fab-stack[data-active="summer"] .palette-fab > [data-palette-icon="summer"],
 	.palette-fab-stack[data-active="autumn"] .palette-fab > [data-palette-icon="autumn"] {
 		display: block !important;
+	}
+}
+
+.palette-notice {
+	position: fixed;
+	inset: 0;
+	z-index: 80;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+	background: rgb(0 0 0 / 40%);
+	opacity: 0;
+	transition: opacity 0.25s ease;
+}
+
+.palette-notice[hidden] {
+	display: none;
+}
+
+.palette-notice.is-on {
+	opacity: 1;
+}
+
+.palette-notice-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: min(42rem, 100%);
+	padding: 4.5rem 2rem;
+	border-radius: 1.5rem;
+	background-image: var(--background-image-impact-gradient);
+	color: var(--color-white);
+	text-align: center;
+	box-shadow: 0 14px 36px rgb(15 23 42 / 18%);
+	outline: 3px solid color-mix(in oklab, var(--color-secondary) 35%, var(--color-impact-gradient-to));
+	outline-offset: 0.45rem;
+	transform: translateY(0.35rem) scale(0.98);
+	transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.palette-notice.is-on .palette-notice-card {
+	transform: none;
+}
+
+.palette-notice-card i {
+	display: block;
+	width: 1.25em;
+	margin-inline: auto;
+	font-size: 4.5rem;
+	line-height: 1;
+	text-align: center;
+	transform: scale(0.92);
+	transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.04s;
+}
+
+.palette-notice.is-on .palette-notice-card i {
+	transform: none;
+}
+
+.palette-notice-text {
+	margin: 1.25rem 0 0;
+	font-family: var(--font-body);
+	font-size: clamp(1.75rem, 3vw, 2.25rem);
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.palette-notice,
+	.palette-notice-card,
+	.palette-notice-card i {
+		transition: none;
+	}
+
+	.palette-notice-card,
+	.palette-notice.is-on .palette-notice-card,
+	.palette-notice-card i,
+	.palette-notice.is-on .palette-notice-card i {
+		transform: none;
 	}
 }

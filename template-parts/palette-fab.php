@@ -86,6 +86,39 @@ $choices = [
 		<?php endforeach; ?>
 	</button>
 </div>
+<?php
+$notices = [
+	'spring' => 'Spring has sprung!',
+	'summer' => 'Step into Summer!',
+	'autumn' => "Its Fall ya'll!",
+	'winter' => "It's a winter wonderland!",
+];
+
+if ( function_exists( 'get_field' ) ) {
+	foreach ( $notices as $slug => $fallback ) {
+		$saved = get_field( 'seasonal_notice_' . $slug, 'option' );
+
+		if ( is_string( $saved ) && '' !== trim( $saved ) ) {
+			$notices[ $slug ] = $saved;
+		}
+	}
+}
+?>
+<div
+	class="palette-notice"
+	data-palette-notice
+	hidden
+	role="status"
+	aria-live="polite"
+	<?php foreach ( $notices as $slug => $text ) : ?>
+		data-notice-<?php echo esc_attr( $slug ); ?>="<?php echo esc_attr( $text ); ?>"
+	<?php endforeach; ?>
+>
+	<div class="palette-notice-card">
+		<i class="fa-solid fa-flower" data-palette-notice-icon aria-hidden="true"></i>
+		<p class="palette-notice-text" data-palette-notice-text></p>
+	</div>
+</div>
 <script>
 	(function () {
 		var active;
@@ -100,7 +133,7 @@ $choices = [
 			return;
 		}
 
-		var stack = document.currentScript && document.currentScript.previousElementSibling;
+		var stack = document.querySelector("[data-palette-fab]");
 
 		if (!stack || !stack.hasAttribute("data-palette-fab")) {
 			return;

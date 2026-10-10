@@ -59,31 +59,15 @@
 		$overlay_classes .= ' video-overlay-gradient';
 	}
 
-	// Global Options → Topography (texture sits on the primary gradient only).
-	$topography = function_exists( 'get_field' ) ? get_field( 'topography', 'option' ) : null;
-	$topo_url   = '';
-
-	if ( is_array( $topography ) && ! empty( $topography['url'] ) ) {
-		$topo_url = $topography['url'];
-	} elseif ( is_numeric( $topography ) ) {
-		$topo_url = (string) wp_get_attachment_image_url( (int) $topography, 'full' );
-	} elseif ( is_string( $topography ) && '' !== $topography ) {
-		$topo_url = $topography;
-	}
-
+	$topo_urls       = prelaunch_topography_urls();
 	$section_classes = 'video-header section theme-invert bg-primary-gradient';
 
-	if ( $topo_url ) {
+	if ( '' !== $topo_urls['brand'] || '' !== $topo_urls['season'] ) {
 		$section_classes .= ' bg-texture';
 	}
 ?>
 
-<section
-	class="<?php echo esc_attr( $section_classes ); ?>"
-	<?php if ( $topo_url ) : ?>
-		style="--bg-texture: url('<?php echo esc_url( $topo_url ); ?>');"
-	<?php endif; ?>
->
+<section class="<?php echo esc_attr( $section_classes ); ?>">
 	<div class="video-header-shell">
 		<div class="video-header-frame viewport-header min-h-[560px] md:min-h-[650px] lg:min-h-[720px]">
 

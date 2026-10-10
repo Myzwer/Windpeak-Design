@@ -13,7 +13,6 @@
 <div class="grid grid-cols-12">
 	<div
 		class="col-span-12 text-white bg-black lg:col-span-6 bg-texture min-h-[20rem] lg:min-h-[40rem]"
-		style="--bg-texture: url('<?php echo esc_url( get_template_directory_uri() . '/assets/public/img/topography.png' ); ?>');"
 	>
 		<div class="px-5 text-center content-middle text-pretty">
 			<?php if ( $subtitle ) : ?>

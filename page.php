@@ -83,6 +83,10 @@
 			'announcement_block',
 		);
 
+		// Even stripes use the palette topography (branded, or black on a season).
+		$topo_urls = prelaunch_topography_urls();
+		$has_topo  = '' !== $topo_urls['brand'] || '' !== $topo_urls['season'];
+
 		echo '<div class="alt-bg-wrap">';
 
 		while ( have_rows( 'body_sections' ) ) :
@@ -123,9 +127,14 @@
 			}
 
 			$background_index ++;
-			$background_class = 0 === $background_index % 2
+			$is_even           = 0 === $background_index % 2;
+			$background_class = $is_even
 				? 'bg-alternating-gradient bg-alternating-even'
 				: 'bg-alternating-gradient bg-alternating-odd';
+
+			if ( $is_even && $has_topo ) {
+				$background_class .= ' bg-texture';
+			}
 
 			echo '<div class="' . esc_attr( $background_class ) . '" data-layout="' . esc_attr( $layout ) . '">';
 			echo $markup; // safe: rendered template markup

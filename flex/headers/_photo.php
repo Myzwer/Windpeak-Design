@@ -23,34 +23,10 @@
 		'winter'   => get_sub_field( 'image_winter' ),
 	);
 
-	/**
-	 * Normalize an ACF image field into a URL.
-	 *
-	 * @param mixed $image ACF image array, ID, or URL string.
-	 * @return string
-	 */
-	$image_url = static function ( $image ): string {
-		if ( is_array( $image ) && ! empty( $image['url'] ) ) {
-			return (string) $image['url'];
-		}
-
-		if ( is_numeric( $image ) ) {
-			$url = wp_get_attachment_image_url( (int) $image, 'full' );
-
-			return $url ? (string) $url : '';
-		}
-
-		if ( is_string( $image ) && '' !== $image ) {
-			return $image;
-		}
-
-		return '';
-	};
-
 	$palette_urls = array();
 
 	foreach ( $images as $palette => $image ) {
-		$url = $image_url( $image );
+		$url = prelaunch_image_url( $image );
 
 		if ( $url ) {
 			$palette_urls[ $palette ] = $url;
@@ -61,21 +37,13 @@
 		return;
 	}
 
-	// Active palette from the same cookie mirror as colors (when wired); else Windpeak.
-	$active_palette = 'windpeak';
+	$active_palette = prelaunch_active_palette();
 
-	if ( isset( $_COOKIE['prelaunch-palette'] ) ) {
-		$cookie_palette = preg_replace( '/[^a-z]/', '', (string) $_COOKIE['prelaunch-palette'] );
-
-		if ( isset( $palette_urls[ $cookie_palette ] ) ) {
-			$active_palette = $cookie_palette;
-		} elseif ( in_array( $cookie_palette, array( 'spring', 'summer', 'autumn', 'winter' ), true ) ) {
-			// Season selected but this header has no photo for it — stay on Windpeak.
-			$active_palette = 'windpeak';
-		}
+	if ( empty( $palette_urls[ $active_palette ] ) ) {
+		$active_palette = 'windpeak';
 	}
 
-	$active_url = $palette_urls[ $active_palette ] ?? $palette_urls['windpeak'];
+	$active_url = $palette_urls[ $active_palette ];
 
 	$darken = trim( (string) $darken );
 	$allowed_darken = array( '0', '30', '45', '60', '70' );
@@ -86,22 +54,15 @@
 
 	$overlay_classes = 'video-hero-overlay video-overlay-' . $darken;
 
-	$topography = function_exists( 'get_field' ) ? get_field( 'topography', 'option' ) : null;
-	$topo_url   = $image_url( $topography );
-
+	$topo_urls       = prelaunch_topography_urls();
 	$section_classes = 'photo-header section theme-invert bg-primary-gradient';
 
-	if ( $topo_url ) {
+	if ( '' !== $topo_urls['brand'] || '' !== $topo_urls['season'] ) {
 		$section_classes .= ' bg-texture';
 	}
 ?>
 
-<section
-	class="<?php echo esc_attr( $section_classes ); ?>"
-	<?php if ( $topo_url ) : ?>
-		style="--bg-texture: url('<?php echo esc_url( $topo_url ); ?>');"
-	<?php endif; ?>
->
+<section class="<?php echo esc_attr( $section_classes ); ?>">
 	<div class="video-header-shell">
 		<div class="video-header-frame viewport-header min-h-[560px] md:min-h-[650px] lg:min-h-[720px]">
 
