@@ -101,3 +101,38 @@ function prelaunch_nonblocking_style_loader_tag(string $html, string $handle): s
 }
 
 add_filter('style_loader_tag', 'prelaunch_nonblocking_style_loader_tag', 10, 2);
+
+/**
+ * Preload the homepage hero still so it paints ahead of the nav logo.
+ */
+function prelaunch_preload_hero_poster(): void
+{
+    if (is_admin() || ! is_front_page() || ! function_exists('get_field')) {
+        return;
+    }
+
+    $rows = get_field('header_select');
+
+    if (! is_array($rows) || empty($rows[0]) || ! is_array($rows[0])) {
+        return;
+    }
+
+    $row = $rows[0];
+
+    if (($row['acf_fc_layout'] ?? '') !== 'video_header') {
+        return;
+    }
+
+    $poster = prelaunch_image_url($row['poster_image'] ?? null);
+
+    if ($poster === '') {
+        return;
+    }
+
+    printf(
+        "<link rel=\"preload\" as=\"image\" href=\"%s\" fetchpriority=\"high\">\n",
+        esc_url($poster)
+    );
+}
+
+add_action('wp_head', 'prelaunch_preload_hero_poster', 1);

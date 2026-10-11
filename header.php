@@ -99,8 +99,7 @@ if (is_array($logo) && ! empty($logo['url'])) : ?>
 					class="nav-brand-logo"
 					src="<?php echo esc_url($logo['url']); ?>"
 					alt="<?php echo esc_attr(! empty($logo['alt']) ? $logo['alt'] : get_bloginfo('name')); ?>"
-					fetchpriority="high"
-					loading="eager"
+					<?php echo prelaunch_image_dimensions_attr($logo); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 					decoding="async"
 				/>
 			<?php else : ?>

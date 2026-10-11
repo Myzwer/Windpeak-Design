@@ -50,6 +50,7 @@ $choices = [
 						class="palette-fab-mark"
 						src="<?php echo esc_url( $logo['url'] ); ?>"
 						alt=""
+						<?php echo prelaunch_image_dimensions_attr( $logo ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 						decoding="async"
 					/>
 				<?php else : ?>
@@ -72,6 +73,7 @@ $choices = [
 			data-palette-icon="windpeak"
 			src="<?php echo esc_url( $logo['url'] ); ?>"
 			alt=""
+			<?php echo prelaunch_image_dimensions_attr( $logo ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 			decoding="async"
 		/>
 		<?php foreach ( $choices as $slug => $choice ) : ?>

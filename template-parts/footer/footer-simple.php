@@ -21,7 +21,9 @@
 				$image = get_field( 'footer_logo', 'option' );
 				if ( ! empty( $image ) ): ?>
 					<img src="<?php echo esc_url( $image['url'] ); ?>"
-						 alt="<?php echo esc_attr( $image['alt'] ); ?>" />
+						 alt="<?php echo esc_attr( $image['alt'] ); ?>"
+						 <?php echo prelaunch_image_dimensions_attr( $image ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
+						 decoding="async" />
 				<?php endif; ?>
 		</div>
 

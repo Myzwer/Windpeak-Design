@@ -29,6 +29,7 @@
 					src="<?php echo esc_url( $image_url ); ?>"
 					alt="<?php echo esc_attr( $image_id ? (string) get_post_meta( $image_id, '_wp_attachment_image_alt', true ) : '' ); ?>"
 					class="object-cover w-full h-auto rounded-2xl max-h-[22rem]"
+					<?php echo prelaunch_image_dimensions_attr( $image ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 					<?php echo prelaunch_seasonal_media_attributes( $urls ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 					loading="lazy"
 					decoding="async"

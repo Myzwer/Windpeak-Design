@@ -54,6 +54,8 @@
 									class="footer-logo"
 									src="<?php echo esc_url( $image['url'] ); ?>"
 									alt="<?php echo esc_attr( $image['alt'] ); ?>"
+									<?php echo prelaunch_image_dimensions_attr( $image ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
+									decoding="async"
 								/>
 							<?php endif; ?>
 					</div>
@@ -207,6 +209,7 @@
 															class="footer-affiliations-logo"
 															src="<?php echo esc_url( $logo_url ); ?>"
 															alt="<?php echo esc_attr( $logo_alt ); ?>"
+															<?php echo prelaunch_image_dimensions_attr( $logo ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 															loading="lazy"
 															decoding="async"
 														/>
@@ -218,6 +221,7 @@
 														class="footer-affiliations-logo"
 														src="<?php echo esc_url( $logo_url ); ?>"
 														alt="<?php echo esc_attr( $logo_alt ); ?>"
+														<?php echo prelaunch_image_dimensions_attr( $logo ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 														loading="lazy"
 														decoding="async"
 													/>

@@ -76,6 +76,43 @@
 	}
 
 	/**
+	 * Width and height attributes from an ACF image value.
+	 *
+	 * CSS still controls the displayed size. These reserve the right ratio.
+	 *
+	 * @param mixed $image Image array, attachment ID, or URL.
+	 * @return string
+	 */
+	function prelaunch_image_dimensions_attr( $image ): string {
+		$width  = 0;
+		$height = 0;
+		$id     = 0;
+
+		if ( is_array( $image ) ) {
+			$width  = ! empty( $image['width'] ) ? (int) $image['width'] : 0;
+			$height = ! empty( $image['height'] ) ? (int) $image['height'] : 0;
+			$id     = ! empty( $image['ID'] ) ? (int) $image['ID'] : 0;
+		} elseif ( is_numeric( $image ) ) {
+			$id = (int) $image;
+		}
+
+		if ( ( $width < 1 || $height < 1 ) && $id > 0 ) {
+			$meta = wp_get_attachment_metadata( $id );
+
+			if ( is_array( $meta ) ) {
+				$width  = ! empty( $meta['width'] ) ? (int) $meta['width'] : 0;
+				$height = ! empty( $meta['height'] ) ? (int) $meta['height'] : 0;
+			}
+		}
+
+		if ( $width < 1 || $height < 1 ) {
+			return '';
+		}
+
+		return ' width="' . $width . '" height="' . $height . '"';
+	}
+
+	/**
 	 * URL for an ACF image value.
 	 *
 	 * @param mixed $image Image array, attachment ID, or URL.
