@@ -28,6 +28,7 @@
 		<?php if ( $form_id ) : ?>
 			<div class="col-span-12">
 				<?php echo do_shortcode( '[gravityform id="' . $form_id . '" title="false" description="false" ajax="true"]' ); ?>
+				<p><?php echo esc_html( 'This site is protected by reCAPTCHA.' ); ?></p>
 			</div>
 		<?php endif; ?>
 	</div>
