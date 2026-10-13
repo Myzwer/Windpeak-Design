@@ -7,13 +7,14 @@
 		exit;
 	}
 
-	$intro    = get_sub_field( 'intro' );
-	$shot     = get_sub_field( 'screenshot' );
-	$shot_id  = ! empty( $shot['ID'] ) ? absint( $shot['ID'] ) : 0;
-	$content  = get_sub_field( 'content' );
-	$link     = get_sub_field( 'link' );
+	$intro          = get_sub_field( 'intro' );
+	$shot           = get_sub_field( 'screenshot' );
+	$shot_id        = ! empty( $shot['ID'] ) ? absint( $shot['ID'] ) : 0;
+	$content        = get_sub_field( 'content' );
+	$link           = get_sub_field( 'link' );
+	$secondary_link = get_sub_field( 'secondary_link' );
 
-	if ( ! $intro && ! $shot_id && ! $content && empty( $link['url'] ) ) {
+	if ( ! $intro && ! $shot_id && ! $content && empty( $link['url'] ) && empty( $secondary_link['url'] ) ) {
 		return;
 	}
 ?>
@@ -53,14 +54,27 @@
 					<?php echo wp_kses_post( $content ); ?>
 				</div>
 			<?php endif; ?>
-			<?php if ( ! empty( $link['url'] ) ) : ?>
-				<a
-					class="border border-black shadow-md btn_main"
-					href="<?php echo esc_url( $link['url'] ); ?>"
-					<?php echo ! empty( $link['target'] ) ? ' target="' . esc_attr( $link['target'] ) . '" rel="noopener noreferrer"' : ''; ?>
-				>
-					<span><?php echo esc_html( $link['title'] ?: 'See The Demo' ); ?></span>
-				</a>
+			<?php if ( ! empty( $link['url'] ) || ! empty( $secondary_link['url'] ) ) : ?>
+				<div class="flex flex-wrap gap-4">
+					<?php if ( ! empty( $link['url'] ) ) : ?>
+						<a
+							class="border border-black shadow-md btn_main"
+							href="<?php echo esc_url( $link['url'] ); ?>"
+							<?php echo ! empty( $link['target'] ) ? ' target="' . esc_attr( $link['target'] ) . '" rel="noopener noreferrer"' : ''; ?>
+						>
+							<span><?php echo esc_html( $link['title'] ?: 'See The Demo' ); ?></span>
+						</a>
+					<?php endif; ?>
+					<?php if ( ! empty( $secondary_link['url'] ) ) : ?>
+						<a
+							class="btn_ghost_black"
+							href="<?php echo esc_url( $secondary_link['url'] ); ?>"
+							<?php echo ! empty( $secondary_link['target'] ) ? ' target="' . esc_attr( $secondary_link['target'] ) . '" rel="noopener noreferrer"' : ''; ?>
+						>
+							<span><?php echo esc_html( $secondary_link['title'] ?: 'Button Label' ); ?></span>
+						</a>
+					<?php endif; ?>
+				</div>
 			<?php endif; ?>
 		</div>
 	</div>

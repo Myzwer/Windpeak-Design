@@ -1132,7 +1132,23 @@
 							"required": 0,
 							"conditional_logic": 0,
 							"wrapper": {
-								"width": "",
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array"
+						},
+						{
+							"key": "field_wpk_lead_link_secondary",
+							"label": "Secondary Button",
+							"name": "secondary_link",
+							"aria-label": "",
+							"type": "link",
+							"instructions": "Ghost black button, shown beside the primary button.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
 								"class": "",
 								"id": ""
 							},
@@ -2134,5 +2150,5 @@
 	"display_title": "",
 	"allow_ai_access": false,
 	"ai_description": "",
-	"modified": 1791438765
+	"modified": 1791873600
 }
