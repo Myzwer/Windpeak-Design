@@ -1764,6 +1764,28 @@
 							"append": ""
 						},
 						{
+							"key": "field_wpk_dyn_lead",
+							"label": "Lead Capture Form Addon",
+							"name": "addon_lead_capture",
+							"aria-label": "",
+							"type": "number",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "33",
+								"class": "",
+								"id": ""
+							},
+							"default_value": 250,
+							"min": "",
+							"max": "",
+							"placeholder": "",
+							"step": "",
+							"prepend": "",
+							"append": ""
+						},
+						{
 							"key": "field_wpk_dyn_copy",
 							"label": "White Glove Copy Addon",
 							"name": "addon_white_glove_copy",

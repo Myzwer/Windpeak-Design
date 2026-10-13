@@ -13,6 +13,7 @@
 	$monthly_service  = (float) ( get_sub_field( 'monthly_service' ) ?: 69 );
 	$term_months      = (int) ( get_sub_field( 'term_months' ) ?: 12 );
 	$addon_crm        = (float) ( get_sub_field( 'addon_vacation_crm' ) ?: 250 );
+	$addon_lead       = (float) ( get_sub_field( 'addon_lead_capture' ) ?: 250 );
 	$addon_copy       = (float) ( get_sub_field( 'addon_white_glove_copy' ) ?: 400 );
 	$addon_design     = (float) ( get_sub_field( 'addon_graphic_design' ) ?: 400 );
 	$has_options_rows = get_sub_field( 'payment_options' ) ?: array();
@@ -24,6 +25,7 @@
 		'termMonths'     => $term_months,
 		'addons'         => array(
 			'vacationCrm'     => $addon_crm,
+			'leadCapture'     => $addon_lead,
 			'whiteGloveCopy'  => $addon_copy,
 			'graphicDesign'   => $addon_design,
 		),
@@ -96,6 +98,20 @@
 								</label>
 								<label class="inline-flex gap-2 items-center">
 									<input type="radio" name="<?php echo esc_attr( $uid ); ?>-crm" value="1" data-pricing-addon="vacationCrm">
+									<span>Yes</span>
+								</label>
+							</div>
+						</fieldset>
+
+						<fieldset class="p-0 m-0 border-0">
+							<legend class="mb-2 text-sm font-bold">Lead Capture Form?</legend>
+							<div class="flex flex-wrap gap-4">
+								<label class="inline-flex gap-2 items-center">
+									<input type="radio" name="<?php echo esc_attr( $uid ); ?>-lead" value="0" data-pricing-addon="leadCapture" checked>
+									<span>No</span>
+								</label>
+								<label class="inline-flex gap-2 items-center">
+									<input type="radio" name="<?php echo esc_attr( $uid ); ?>-lead" value="1" data-pricing-addon="leadCapture">
 									<span>Yes</span>
 								</label>
 							</div>

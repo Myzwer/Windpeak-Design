@@ -931,6 +931,11 @@ $set_body(
 					'detail_content' => '<h3>VacationCRM Integration: $250</h3><p>With a VCRM integration, you can create a custom form that asks any questions you’d like, all while still sending the lead over to your VCRM, this time with all the information you need baked in from the start.</p>',
 				),
 				array(
+					'icon'           => $fa( 'fa-solid fa-envelope' ),
+					'label'          => 'Lead Capture Form: $250',
+					'detail_content' => '<h3>Lead Capture Form: $250</h3><p>No one wants to sign up for extra spam in their inbox, but they will give up their email in exchange for something you can offer them. This upgrade allows you to offer a pdf, zip, or any other file type in exchange for an email that you can automatically link to Mailchimp, Constant Contact and many other services.</p><p>Note that neither the lead capture giveaway item nor the mockup is included, just the ability to add these.</p>',
+				),
+				array(
 					'icon'           => $fa( 'fa-solid fa-pen-nib' ),
 					'label'          => 'White Glove Copy: $400',
 					'detail_content' => '<h3>White Glove Copy: $400</h3><p>This service includes a meeting with our copywriter, full website copy, and a round of revisions.</p><p>You still have the freedom to edit your own copy as you see fit, but if you want a professional to get you 95% of the way there while you research hotel prices for a client, this is the service for you.</p>',
@@ -965,6 +970,7 @@ $set_body(
 			'monthly_service'         => 69,
 			'term_months'             => 12,
 			'addon_vacation_crm'      => 250,
+			'addon_lead_capture'      => 250,
 			'addon_white_glove_copy'  => 400,
 			'addon_graphic_design'    => 400,
 		),

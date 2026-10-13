@@ -296,6 +296,7 @@ $body = array(
 		'monthly_service'   => 69,
 		'term_months'       => 12,
 		'addon_vacation_crm'=> 250,
+		'addon_lead_capture'=> 250,
 		'addon_white_glove_copy' => 400,
 		'addon_graphic_design'   => 400,
 	),

@@ -9,6 +9,7 @@ type PricingConfig = {
 	termMonths: number;
 	addons: {
 		vacationCrm: number;
+		leadCapture: number;
 		whiteGloveCopy: number;
 		graphicDesign: number;
 	};
@@ -38,11 +39,14 @@ const readConfig = (root: HTMLElement): PricingConfig | null => {
 const calculate = (
 	config: PricingConfig,
 	payment: "upfront" | "spread",
-	addons: { vacationCrm: boolean; whiteGloveCopy: boolean; graphicDesign: boolean }
+	addons: { vacationCrm: boolean; leadCapture: boolean; whiteGloveCopy: boolean; graphicDesign: boolean }
 ): { upfront: number; monthly: number; then: number } => {
 	let projectTotal = config.baseSite;
 	if (addons.vacationCrm) {
 		projectTotal += config.addons.vacationCrm;
+	}
+	if (addons.leadCapture) {
+		projectTotal += config.addons.leadCapture;
 	}
 	if (addons.whiteGloveCopy) {
 		projectTotal += config.addons.whiteGloveCopy;
@@ -88,6 +92,9 @@ const initPricingCalculators = (): void => {
 			const addonState = {
 				vacationCrm:
 					root.querySelector<HTMLInputElement>('[data-pricing-addon="vacationCrm"]:checked')?.value ===
+					"1",
+				leadCapture:
+					root.querySelector<HTMLInputElement>('[data-pricing-addon="leadCapture"]:checked')?.value ===
 					"1",
 				whiteGloveCopy:
 					root.querySelector<HTMLInputElement>('[data-pricing-addon="whiteGloveCopy"]:checked')
